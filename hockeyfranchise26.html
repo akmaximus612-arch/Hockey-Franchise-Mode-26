@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NHL Franchise Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Barlow', sans-serif; padding: 20px; transition: all 0.4s ease; background: #111; color: #fff; }
+h1,h2,h3 { text-align:center; letter-spacing:1px; }
+button { padding:10px 16px; margin:5px; border:none; font-weight:700; cursor:pointer; border-radius:6px; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+button:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+select { padding:8px; border-radius:6px; font-family:'Barlow',sans-serif; }
+.box { border-radius:10px; padding:15px; margin-top:15px; background:#222dd; }
+.hidden { display:none; }
+</style>
+</head>
+<body>
+
+<h1>NHL Franchise Mode</h1>
+
+<div id="teamSelect" class="box">
+  <h2>Welcome to NHL Franchise Simulator</h2>
+
+  <p>
+    Take control of an NHL team and try to build a dynasty! <br>
+    You will manage rosters, make trades, call up AHL players, and simulate seasons. <br>
+    Your goal: win as many Stanley Cups as you can. <br>
+    You have 100 seasons to see how many Cups you can win. <br>
+    Choose your team below to begin your GM career!
+  </p>
+
+  <h3>Select Team</h3>
+  <select id="teamDropdown"></select><br><br>
+  <button onclick="startFranchise()">Start Franchise</button>
+</div>
+
+<div id="franchise" class="box hidden">
+  <h2 id="teamName"></h2>
+  <h3 id="arenaText"></h3>
+  <h3 id="seasonText">Season: 2025–26</h3>
+  <h3 id="cupsWon">Stanley Cups Won: 0</h3>
+
+  <button onclick="viewDashboard()">Dashboard</button>
+  <button onclick="viewRoster()">View Roster</button>
+  <button onclick="simSeason()">Sim Season</button>
+  <button onclick="openFreeAgents()">Free Agents</button>
+  <button onclick="openTrades()">Trade</button>
+  <button onclick="buyoutPlayer()">Buyout Player</button>
+
+  <button onclick="viewCoach()">View Coach</button>
+  <button onclick="fireCoach()">Fire Coach</button>
+  <button onclick="showCoachPool()">Hire Coach</button>
+  <button onclick="openAHL()">AHL Transactions</button>
+
+  <button onclick="relocateTeam()">Relocate Team</button>
+
+  <div id="output" class="box"></div>
+</div>
+
+<script>
+/* ================= TEAM DATA ================= */
+const teams = {
+"Anaheim Ducks":{c1:"#F47A38",c2:"#B09862",t:"#000",p:[["Mason McTavish",88,"F"],["Leo Carlsson",85,"F"],["Ville Husso",84,"G"],["Sam Colangelo",80,"F"],["Mikael Granlund",82,"F"],["Chris Kreider",84,"F"],["Pavel Mintyukov",78,"F"],["Alex Killorn",81,"F"],["Troy Terry",83,"F"]]},
+"Boston Bruins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["David Pastrnak",91,"F"],["Charlie McAvoy",89,"F"],["Elias Lindholm",87,"F"],["Viktor Arvidsson",84,"F"],["Mason Lohrei",76,"F"],["Joonas Korpisalo",81,"G"],["Tanner Jeannot",78,"F"],["Jordan Harris",77,"D"],["Andrew Peeke",75,"F"]]},
+"Buffalo Sabres":{c1:"#002654",c2:"#FDBB2F",t:"#fff",p:[["Tage Thompson",87,"F"],["Rasmus Dahlin",89,"F"],["Alex Tuch",86,"F"],["Zach Benson",80,"F"],["Peyton Krebs",77,"F"],["Jiri Kulich",78,"F"],["Josh Norris",81,"F"],["Ukko-Pekka Luukkonen",84,"G"],["Tyson Kozak",76,"F"]]},
+"Calgary Flames":{c1:"#C8102E",c2:"#F1BE48",t:"#fff",p:[["Nazem Kadri",85,"F"],["Yegor Sharangovich",84,"F"],["Mackenzie Weegar",87,"F"],["Rasmus Andersson",83,"F"],["Matvei Gridin",77,"F"],["Martin Pospisil",78,"F"],["Blake Coleman",81,"F"],["Joel Farabee",82,"F"],["Dustin Wolf",83,"G"]]},
+"Carolina Hurricanes":{c1:"#CC0000",c2:"#000000",t:"#fff",p:[["Sebastian Aho",89,"F"],["Andrei Svechnikov",87,"F"],["Jaccob Slavin",88,"F"],["Nikolaj Ehlers",87,"F"],["Seth Jarvis",82,"F"],["Pyotr Kochetkov",81,"G"],["Jesperi Kotkaniemi",80,"F"],["Taylor Hall",79,"F"],["Alexander Nikishin",84,"F"]]},
+"Chicago Blackhawks":{c1:"#CF0A2C",c2:"#000000",t:"#fff",p:[["Connor Bedard",88,"F"],["Spencer Knight",85,"G"],["Tyler Bertuzzi",85,"F"],["Andre Burakovsky",84,"F"],["Sam Lafferty",76,"F"],["Teuvo Teravainen",83,"F"],["Ilya Mikheyev",81,"F"],["Colton Dach",78,"F"],["Frank Nazar",81,"F"]]},
+"Colorado Avalanche":{c1:"#6F263D",c2:"#236192",t:"#fff",p:[["Nathan MacKinnon",94,"F"],["Cale Makar",93,"F"],["Valeri Nichushkin",87,"F"],["Ross Colton",82,"F"],["Samuel Girard",83,"F"],["Devon Toews",84,"F"],["Mackenzie Blackwood",81,"G"],["Artturi Lehkonen",80,"F"],["Brent Burns",84,"F"]]},
+"Columbus Blue Jackets":{c1:"#002654",c2:"#CE1126",t:"#fff",p:[["Adam Fantilli",87,"F"],["Zach Werenski",88,"F"],["Boone Jenner",83,"F"],["Charlie Coyle",82,"F"],["Isac Lundestrom",78,"F"],["Elvis Merzlikins",83,"G"],["Dante Fabbro",81,"F"],["Cole Sillinger",80,"F"],["Mason Marchment",83,"F"]]},
+"Dallas Stars":{c1:"#006847",c2:"#8F8F8C",t:"#fff",p:[["Jason Robertson",90,"F"],["Roope Hintz",88,"F"],["Miro Heiskanen",91,"F"],["Matt Duchene",84,"F"],["Jake Oettinger",90,"G"],["Thomas Harley",78,"F"],["Radek Faksa",79,"F"],["Esa Lindell",81,"F"],["Colin Blackwell",78,"F"]]},
+"Detroit Red Wings":{c1:"#CE1126",c2:"#FFFFFF",t:"#000",p:[["Dylan Larkin",87,"F"],["Lucas Raymond",86,"F"],["Alex DeBrincat",88,"F"],["Patrick Kane",87,"F"],["Simon Edvinsson",80,"F"],["Cam Talbot",81,"G"],["J.T. Compher",78,"F"],["Ben Chiarot",77,"F"],["Moritz Seider",89,"F"]]},
+"Edmonton Oilers":{c1:"#041E42",c2:"#FF4C00",t:"#fff",p:[["Connor McDavid",97,"F"],["Leon Draisaitl",94,"F"],["Evan Bouchard",89,"F"],["Ryan Nugent-Hopkins",85,"F"],["Zach Hyman",87,"F"],["Tristan Jarry",85,"G"],["Darnell Nurse",88,"D"],["Andrew Mangiapane",82,"F"],["Trent Frederic",80,"F"]]},
+"Florida Panthers":{c1:"#C8102E",c2:"#041E42",t:"#fff",p:[["Brad Marchand",90,"F"],["Sam Reinhart",88,"F"],["Anton Lundell",86,"F"],["Aaron Ekblad",86,"F"],["Gustav Forsling",81,"F"],["Sergei Bobrovsky",84,"G"],["Luke Kunin",80,"F"],["Seth Jones",87,"F"],["Matthew Tkachuk",91,"F"]]},
+"Los Angeles Kings":{c1:"#111111",c2:"#A2AAAD",t:"#fff",p:[["Anze Kopitar",86,"F"],["Drew Doughty",84,"F"],["Adrian Kempe",85,"F"],["Corey Perry",84,"F"],["Joel Armia",78,"F"],["Trevor Moore",80,"F"],["Samuel Helenius",77,"F"],["Alex Turcotte",78,"F"],["Jeff Malott",78,"F"]]},
+"Minnesota Wild":{c1:"#154734",c2:"#A6192E",t:"#fff",p:[["Quinn Hughes",92,"F"],["Kirill Kaprizov",90,"F"],["Matt Boldy",87,"F"],["Filip Gustavsson",82,"G"],["Marcus Johansson",80,"F"],["Vinnie Hinostroza",79,"F"],["Yakov Trenin",78,"F"],["Nico Sturm",77,"F"],["Ben Jones",76,"F"]]},
+"Montreal Canadiens":{c1:"#AF1E2D",c2:"#192168",t:"#fff",p:[["Nick Suzuki",88],"F",["Juraj Slafkovsky",84,"F"],["Cole Caufield",86,"F"],["Josh Anderson",85,"F"],["Owen Beck",75,"F"],["Sammy Blais",78,"F"],["Joe Veleno",80,"F"],["Jakub Dobeš",83,"G"],["Alexandre Carrier",79,"F"]]},
+"Nashville Predators":{c1:"#FFB81C",c2:"#041E42",t:"#fff",p:[["Filip Forsberg",86,"F"],["Roman Josi",89,"F"],["Juuse Saros",83,"G"],["Steven Stamkos",89,"F"],["Ryan O'Reilly",87,"F"],["Tyson Jost",82,"F"],["Adam Wilsby",78,"F"],["Kevin Gravel",76,"F"], ["Jordan Oesterle",77,"F"]]},
+"New Jersey Devils":{c1:"#CE1126",c2:"#000000",t:"#fff",p:[["Jack Hughes",91,"F"],["Nico Hischier",87,"F"],["Dougie Hamilton",86,"F"],["Timo Meier",87,"F"],["Evgenii Dadonov",81,"F"],["Connor Brown",80,"F"],["Arseni Gritsyuk",78,"F"],["Seamus Casey",77,"F"],["Jacob Markstrom",91,"G"]]},
+"NY Islanders":{c1:"#00539B",c2:"#F47D30",t:"#fff",p:[["Mathew Barzal",88,"F"],["Bo Horvat",87,"F"],["Ilya Sorokin",90,"G"],["Anders Lee",85,"F"],["Matthew Schaefer",83,"F"],["Jean-Gabriel Pageau",81,"F"],["Simon Holmstrom",78,"F"],["Tony DeAngelo",78,"F"],["Kyle Palmieri",82,"F"]]},
+"NY Rangers":{c1:"#0038A8",c2:"#CE1126",t:"#fff",p:[["Artemi Panarin",91,"F"],["Mika Zibanejad",88,"F"],["Igor Shesterkin",92,"G"],["Adam Fox",92,"F"],["Alexis Lafreniere",80,"F"],["Braden Schneider",77,"F"],["Vincent Trocheck",86,"F"],["J.T. Miller",89,"F"],["Conor Sheary",77,"F"]]},
+"Ottawa Senators":{c1:"#C52032",c2:"#000000",t:"#fff",p:[["Brady Tkachuk",88,"F"],["Tim Stützle",89,"F"],["Thomas Chabot",85,"F"],["Claude Giroux",85,"F"],["David Perron",83,"F"],["Lars Eller",79,"F"],["Nick Cousins",78,"F"],["Nick Jensen",81,"F"],["Leevi Merilainen",82,"G"]]},
+"Philadelphia Flyers":{c1:"#F74902",c2:"#000000",t:"#fff",p:[["Travis Konecny",86,"F"],["Owen Tippett",84,"F"],["Sean Couturier",83,"F"],["Noah Cates",82,"F"],["Philip Tomasino",82,"F"],["Samuel Ersson",83,"G"],["Matvei Michkov",86,"F"],["Trevor Zegras",89,"F"],["Bobby Brink",85,"F"]]},
+"Pittsburgh Penguins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["Sidney Crosby",89,"F"],["Evgeni Malkin",86,"F"],["Kris Letang",85,"F"],["Erik Karlsson",89,"F"],["Noel Acciari",81,"F"],["Justin Brazeau",80,"F"],["Ville Koivunen",79,"F"],["Ben Kindel",81,"F"],["Arturs Silovs",83,"G"]]},
+"San Jose Sharks":{c1:"#006D75",c2:"#EA7200",t:"#fff",p:[["Macklin Celebrini",88,"F"],["Jeff Skinner",81,"F"],["John Klingberg",83,"F"],["William Eklund",81,"F"],["Ryan Reaves",75,"F"],["Collin Graf",80,"F"],["Shakir Mukhamadullin",78,"F"],["Yaroslav Askarov",85,"G"],["Igor Chernyshov",82,"F"]]},
+"Seattle Kraken":{c1:"#001628",c2:"#99D9D9",t:"#fff",p:[["Matty Beniers",85,"F"],["Jared McCann",84,"F"],["Vince Dunn",85,"F"],["Jordan Eberle",83,"F"],["Kaapo Kakko",88,"F"],["Berkly Catton",79,"F"],["Frederick Gaudreau",82,"F"],["Brandon Montour",86,"F"],["Ryker Evans",83,"F"]]},
+"St. Louis Blues":{c1:"#002F87",c2:"#FCB514",t:"#fff",p:[["Robert Thomas",88,"F"],["Jordan Kyrou",86,"F"],["Colton Parayko",85,"F"],["Jonatan Berggren",83,"F"],["Pius Suter",83,"F"],["Nick Bjugstad",80,"F"],["Mathieu Joseph",81,"F"],["Logan Mailloux",79,"F"],["Jimmy Snuggerud",78,"F"]]},
+"Tampa Bay Lightning":{c1:"#002868",c2:"#FFFFFF",t:"#000",p:[["Nikita Kucherov",94,"F"],["Brayden Point",90,"F"],["Victor Hedman",88,"F"],["Andre Vasilevskiy",93,"G"],["Pontus Holmberg",80,"F"],["Darren Raddysh",80,"F"],["Conor Geekie",81,"F"],["Max Crozier",78,"F"],["Charle-Edouard D'Astous",77,"F"]]},
+"Toronto Maple Leafs":{c1:"#00205B",c2:"#FFFFFF",t:"#000",p:[["Auston Matthews",94,"F"],["William Nylander",88,"F"],["Max Domi",84,"F"],["Matthew Knies",84,"F"],["John Tavares",91,"F"],["Bobby McMann",79,"F"],["Matias Maccelli",80,"F"],["Morgan Rielly",88,"F"],["Steven Lorentz",79,"F"]]},
+"Utah Mammoth":{c1:"#7EC8E3",c2:"#000000",t:"#fff",p:[["Clayton Keller",88,"F"],["Barrett Hayton",83,"F"],["Nick Schmaltz",85,"F"],["Logan Cooley",82,"F"],["Lawson Crouse",79,"F"],["Michael Carcone",79,"F"],["Brandon Tanev",80,"F"],["Sean Durzi",81,"F"],["Karel Vejmelka",82,"G"]]},
+"Vancouver Canucks":{c1:"#00205B",c2:"#00843D",t:"#fff",p:[["Elias Pettersson",90,"F"],["Brock Boeser",87,"F"],["Filip Hronek",86,"F"],["Jake DeBrusk",83,"F"],["Jonathan Lekkerimäki",80,"F"],["Marco Rossi",82,"F"],["Teddy Blueger",78,"F"],["Derek Forbort",77,"F"],["Kevin Lankinen",82,"G"]]},
+"Vegas Golden Knights":{c1:"#B4975A",c2:"#333F42",t:"#000",p:[["Jack Eichel",90,"F"],["Mark Stone",88,"F"],["Tomas Hertl",87,"F"],["Ivan Barbashev",86,"F"],["Pavel Dorofeyev",79,"F"],["Brayden McNabb",84,"F"],["Keegan Kolesar",80,"F"],["Ben Hutton",77,"F"],["Akira Schmid",82,"G"]]},
+"Washington Capitals":{c1:"#041E42",c2:"#C8102E",t:"#fff",p:[["Alex Ovechkin",86,"F"],["Dylan Strome",84,"F"],["John Carlson",85,"F"],["Pierre-Luc Dubois",87,"F"],["Justin Sourdif",81,"F"],["Dylan McIlrath",76,"F"],["Hendrix Lapierre",78,"F"],["Nic Dowd",82,"F"],["Charlie Lindgren",83,"G"]]},
+"Winnipeg Jets":{c1:"#041E42",c2:"#AC162C",t:"#fff",p:[["Kyle Connor",88,"F"],["Mark Scheifele",87,"F"],["Connor Hellebuyck",90,"G"],["Nikita Chibrikov",82,"F"],["Gustav Nyquist",82,"F"],["Tanner Pearson",80,"F"],["Vladislav Namestnikov",82,"F"],["Neal Pionk",85,"F"],["Jonathan Toews",82,"F"]]}
+};
+
+/* ================= AHL TEAMS ================= */
+const ahlTeams = {
+  "Anaheim Ducks": {
+    name: "San Diego Gulls",
+    color: "#041E42",
+    players: [
+      { name: "Tim Washe", ovr: 76, position: "F" },
+      { name: "Tristan Luneau", ovr: 75, position: "F" },
+      { name: "Calle Clang", ovr: 74, position: "G" }
+    ]
+  },
+
+  "Utah Mammoth": {
+    name: "Tucson Roadrunners",
+    color: "#8C2633",
+    players: [
+      { name: "Kevin Rooney", ovr: 77, position: "F" },
+      { name: "Maveric Lamoureux", ovr: 75, position: "F" },
+      { name: "Matthew Villalta", ovr: 74, position: "G" }
+    ]
+  },
+
+  "Boston Bruins": {
+    name: "Providence Bruins",
+    color: "#FFB81C",
+    players: [
+      { name: "Georgii Merkulov", ovr: 77, position: "F" },
+      { name: "Michael Callahan", ovr: 76, position: "F" },
+      { name: "Michael DiPietro", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Buffalo Sabres": {
+    name: "Rochester Americans",
+    color: "#002654",
+    players: [
+      { name: "Isak Rosén", ovr: 76, position: "F" },
+      { name: "Jack Rathbone", ovr: 75, position: "F" },
+      { name: "Scott Ratzlaff", ovr: 74, position: "G" }
+    ]
+  },
+
+  "Calgary Flames": {
+    name: "Calgary Wranglers",
+    color: "#C8102E",
+    players: [
+      { name: "Dryden Hunt", ovr: 77, position: "F" },
+      { name: "Nick Cicek", ovr: 76, position: "F" },
+      { name: "Ivan Prosvetov", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Carolina Hurricanes": {
+    name: "Chicago Wolves",
+    color: "#CC0000",
+    players: [
+      { name: "Givani Smith", ovr: 77, position: "F" },
+      { name: "Ronan Seeley", ovr: 76, position: "F" },
+      { name: "Cayden Primeau", ovr: 78, position: "G" }
+    ]
+  },
+
+  "Chicago Blackhawks": {
+    name: "Rockford IceHogs",
+    color: "#CF0A2C",
+    players: [
+      { name: "Brett Seney", ovr: 76, position: "F" },
+      { name: "Sam Rinzel", ovr: 74, position: "F" },
+      { name: "Laurent Brossoit", ovr: 82, position: "G" }
+    ]
+  },
+
+  "Colorado Avalanche": {
+    name: "Colorado Eagles",
+    color: "#6F263D",
+    players: [
+      { name: "Jayson Megna", ovr: 75, position: "F" },
+      { name: "Hank Kempf", ovr: 73, position: "F" },
+      { name: "Trent Miner", ovr: 74, position: "G" }
+    ]
+  },
+
+  "Columbus Blue Jackets": {
+    name: "Cleveland Monsters",
+    color: "#002654",
+    players: [
+      { name: "Jordan Dumais", ovr: 76, position: "F" },
+      { name: "Will Butcher", ovr: 75, position: "F" },
+      { name: "Zach Sawchenko", ovr: 74, position: "G" }
+    ]
+  },
+
+  "Dallas Stars": {
+    name: "Texas Stars",
+    color: "#006847",
+    players: [
+      { name: "Nathan Bastian", ovr: 77, position: "F" },
+      { name: "Tristan Bertucci", ovr: 74, position: "F" },
+      { name: "Ben Kraws", ovr: 76, position: "G" }
+    ]
+  },
+
+  "Detroit Red Wings": {
+    name: "Grand Rapids Griffins",
+    color: "#CE1126",
+    players: [
+      { name: "Dominik Shine", ovr: 77, position: "F" },
+      { name: "Erik Gustafsson", ovr: 83, position: "F" },
+      { name: "Sebastian Cossa", ovr: 80, position: "G" }
+    ]
+  },
+
+  "Edmonton Oilers": {
+    name: "Bakersfield Condors",
+    color: "#041E42",
+    players: [
+      { name: "Max Jones", ovr: 78, position: "F" },
+      { name: "Cam Dineen", ovr: 76, position: "F" },
+      { name: "Matt Tomkins", ovr: 77, position: "G" }
+    ]
+  },
+
+  "Florida Panthers": {
+    name: "Charlotte Checkers",
+    color: "#C8102E",
+    players: [
+      { name: "MacKenzie Entwistle", ovr: 77, position: "F" },
+      { name: "Trevor Carrick", ovr: 76, position: "F" },
+      { name: "Louis Domingue", ovr: 78, position: "G" }
+    ]
+  },
+
+  "Los Angeles Kings": {
+    name: "Ontario Reign",
+    color: "#4B2E83",
+    players: [
+      { name: "Nikita Alexandrov", ovr: 78, position: "F" },
+      { name: "Kyle Burroughs", ovr: 77, position: "F" },
+      { name: "Pheonix Copley", ovr: 80, position: "G" }
+    ]
+  },
+
+  "Minnesota Wild": {
+    name: "Iowa Wild",
+    color: "#154734",
+    players: [
+      { name: "Nicolas Aubé-Kubel", ovr: 80, position: "F" },
+      { name: "Ben Gleason", ovr: 76, position: "F" },
+      { name: "Cal Petersen", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Montreal Canadiens": {
+    name: "Laval Rocket",
+    color: "#AF1E2D",
+    players: [
+      { name: "Laurent Dauphin", ovr: 78, position: "F" },
+      { name: "Nate Clurman", ovr: 76, position: "F" },
+      { name: "Kaapo Kähkönen", ovr: 81, position: "G" }
+    ]
+  },
+
+  "Nashville Predators": {
+    name: "Milwaukee Admirals",
+    color: "#FFB81C",
+    players: [
+      { name: "Jake Lucchini", ovr: 77, position: "F" },
+      { name: "Tanner Molendyk", ovr: 76, position: "F" },
+      { name: "Magnus Chrona", ovr: 78, position: "G" }
+    ]
+  },
+
+  "New Jersey Devils": {
+    name: "Utica Comets",
+    color: "#CE1126",
+    players: [
+      { name: "Angus Crookshank", ovr: 77, position: "F" },
+      { name: "Calen Addison", ovr: 76, position: "F" },
+      { name: "Nico Daws", ovr: 81, position: "G" }
+    ]
+  },
+
+  "NY Islanders": {
+    name: "Bridgeport Islanders",
+    color: "#00539B",
+    players: [
+      { name: "Matthew Highmore", ovr: 77, position: "F" },
+      { name: "Marshall Warren", ovr: 74, position: "F" },
+      { name: "Marcus Högberg", ovr: 79, position: "G" }
+    ]
+  },
+
+  "NY Rangers": {
+    name: "Hartford Wolf Pack",
+    color: "#0033A0",
+    players: [
+      { name: "Justin Dowling", ovr: 76, position: "F" },
+      { name: "Connor Mackey", ovr: 80, position: "F" },
+      { name: "Spencer Martin", ovr: 81, position: "G" }
+    ]
+  },
+
+  "Ottawa Senators": {
+    name: "Belleville Senators",
+    color: "#C52032",
+    players: [
+      { name: "Arthur Kaliyev", ovr: 81, position: "F" },
+      { name: "Carter Yakemchuk", ovr: 74, position: "F" },
+      { name: "Mads Søgaard", ovr: 83, position: "G" }
+    ]
+  },
+
+  "Philadelphia Flyers": {
+    name: "Lehigh Valley Phantoms",
+    color: "#F74902",
+    players: [
+      { name: "Zayde Wisdom", ovr: 78, position: "F" },
+      { name: "Hunter McDonald", ovr: 76, position: "F" },
+      { name: "Aleksei Kolosov", ovr: 80, position: "G" }
+    ]
+  },
+
+  "Pittsburgh Penguins": {
+    name: "Wilkes-Barre/Scranton Penguins",
+    color: "#FFB81C",
+    players: [
+      { name: "Valtteri Puustinen", ovr: 80, position: "F" },
+      { name: "Scooter Brickey", ovr: 74, position: "F" },
+      { name: "Joel Blomqvist", ovr: 82, position: "G" }
+    ]
+  },
+
+  "San Jose Sharks": {
+    name: "San Jose Barracuda",
+    color: "#006D75",
+    players: [
+      { name: "Colin White", ovr: 78, position: "F" },
+      { name: "Jack Thompson", ovr: 76, position: "F" },
+      { name: "Jakub Skarek", ovr: 78, position: "G" }
+    ]
+  },
+
+  "Seattle Kraken": {
+    name: "Coachella Valley Firebirds",
+    color: "#FF6F00",
+    players: [
+      { name: "John Hayden", ovr: 75, position: "F" },
+      { name: "Ville Ottavainen", ovr: 77, position: "F" },
+      { name: "Nikke Kokko", ovr: 81, position: "G" }
+    ]
+  },
+
+  "St. Louis Blues": {
+    name: "Springfield Thunderbirds",
+    color: "#002F87",
+    players: [
+      { name: "Matt Luff", ovr: 78, position: "F" },
+      { name: "Calle Rosén", ovr: 76, position: "F" },
+      { name: "Georgi Romanov", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Tampa Bay Lightning": {
+    name: "Syracuse Crunch",
+    color: "#00205B",
+    players: [
+      { name: "Jakob Pelletier", ovr: 78, position: "F" },
+      { name: "Steven Santini", ovr: 76, position: "F" },
+      { name: "Brandon Halverson", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Toronto Maple Leafs": {
+    name: "Toronto Marlies",
+    color: "#003E7E",
+    players: [
+      { name: "Vinni Lettieri", ovr: 78, position: "F" },
+      { name: "Henry Thrun", ovr: 76, position: "F" },
+      { name: "Vyacheslav Peksa", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Vancouver Canucks": {
+    name: "Abbotsford Canucks",
+    color: "#00205B",
+    players: [
+      { name: "Lukas Reichel", ovr: 79, position: "F" },
+      { name: "Victor Mancini", ovr: 79, position: "F" },
+      { name: "Jiří Patera", ovr: 78, position: "G" }
+    ]
+  },
+
+  "Vegas Golden Knights": {
+    name: "Henderson Silver Knights",
+    color: "#B4975A",
+    players: [
+      { name: "Raphael Lavoie", ovr: 77, position: "F" },
+      { name: "Lukas Cormier", ovr: 76, position: "F" },
+      { name: "Carl Lindbom", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Washington Capitals": {
+    name: "Hershey Bears",
+    color: "#3D2B1F",
+    players: [
+      { name: "Spencer Smallman", ovr: 78, position: "F" },
+      { name: "Aaron Ness", ovr: 76, position: "F" },
+      { name: "Clay Stevenson", ovr: 75, position: "G" }
+    ]
+  },
+
+  "Winnipeg Jets": {
+    name: "Manitoba Moose",
+    color: "#041E42",
+    players: [
+      { name: "Mason Shaw", ovr: 77, position: "F" },
+      { name: "Isaak Phillips", ovr: 76, position: "F" },
+      { name: "Thomas Milic", ovr: 75, position: "G" }
+    ]
+  }
+};
+
+/* ================= FREE AGENTS ================= */
+let freeAgents = [
+  {name:"Evgeny Kuznetsov",ovr:82},
+  {name:"Mike Hoffman",ovr:81},
+  {name:"Phil Kessel",ovr:80},
+  {name:"Jani Hakanpaa",ovr:80},
+  {name:"Robert Bortuzzo",ovr:80},
+  {name:"Grigori Denisenko",ovr:76}
+];
+
+/* ================= ARENAS ================= */
+const arenas = {
+"Anaheim Ducks":"Honda Center","Boston Bruins":"TD Garden","Buffalo Sabres":"KeyBank Center",
+"Calgary Flames":"Scotiabank Saddledome","Carolina Hurricanes":"PNC Arena","Chicago Blackhawks":"United Center",
+"Colorado Avalanche":"Ball Arena","Columbus Blue Jackets":"Nationwide Arena","Dallas Stars":"American Airlines Center",
+"Detroit Red Wings":"Little Caesars Arena","Edmonton Oilers":"Rogers Place","Florida Panthers":"Amerant Bank Arena",
+"Los Angeles Kings":"Crypto.com Arena","Minnesota Wild":"Grand Casino Arena","Montreal Canadiens":"Bell Centre",
+"Nashville Predators":"Bridgestone Arena","New Jersey Devils":"Prudential Center","NY Islanders":"UBS Arena",
+"NY Rangers":"Madison Square Garden","Ottawa Senators":"Canadian Tire Centre","Philadelphia Flyers":"Wells Fargo Center",
+"Pittsburgh Penguins":"PPG Paints Arena","San Jose Sharks":"SAP Center","Seattle Kraken":"Climate Pledge Arena",
+"St. Louis Blues":"Enterprise Center","Tampa Bay Lightning":"Amalie Arena","Toronto Maple Leafs":"Scotiabank Arena",
+"Utah Mammoth":"Delta Center","Vancouver Canucks":"Rogers Arena","Vegas Golden Knights":"T-Mobile Arena",
+"Washington Capitals":"Capital One Arena","Winnipeg Jets":"Canada Life Centre"
+};
+
+/* ================= RELOCATION DATA ================= */
+const relocationCities = ["Atlanta","Houston","Quebec","San Francisco"];
+const relocationNames = ["Thrashers","Aeros","Nordiques","Seals"];
+const relocationColors = {
+  "Atlanta": {c1:"#88DDEE", c2:"#003366", t:"#fff", arena:"State Farm Arena"},
+  "Houston": {c1:"#002244", c2:"#AA0000", t:"#fff", arena:"Toyota Center"},
+  "Quebec": {c1:"#00AEEF", c2:"#ED1B2E", t:"#fff", arena:"Videotron Centre"},
+  "San Francisco": {c1:"#8B5A2B", c2:"#FFFFFF", t:"#FFD700", arena:"Chase Center"}
+};
+
+/* ================= COACHES ================= */
+const realCoaches = {
+"Anaheim Ducks": { name: "Joel Quenneville", ovr: 82 },
+"Boston Bruins": { name: "Marco Sturm", ovr: 88 },
+"Buffalo Sabres": { name: "Lindy Ruff", ovr: 83 },
+"Calgary Flames": { name: "Ryan Huska", ovr: 82 },
+"Carolina Hurricanes": { name: "Rod Brind’Amour", ovr: 90 },
+"Chicago Blackhawks": { name: "Jeff Blashill", ovr: 78 },
+"Colorado Avalanche": { name: "Jared Bednar", ovr: 89 },
+"Columbus Blue Jackets": { name: "Dean Evason", ovr: 79 },
+"Dallas Stars": { name: "Glen Gulutzan", ovr: 87 },
+"Detroit Red Wings": { name: "Todd McLellan", ovr: 86 },
+"Edmonton Oilers": { name: "Kris Knoblauch", ovr: 83 },
+"Florida Panthers": { name: "Paul Maurice", ovr: 81 },
+"Los Angeles Kings": { name: "Jim Hiller", ovr: 85 },
+"Minnesota Wild": { name: "John Hynes", ovr: 83 },
+"Montreal Canadiens": { name: "Martin St. Louis", ovr: 87 },
+"Nashville Predators": { name: "Andrew Brunette", ovr: 75 },
+"New Jersey Devils": { name: "Sheldon Keefe", ovr: 81 },
+"NY Islanders": { name: "Patrick Roy", ovr: 82 },
+"NY Rangers": { name: "Mike Sullivan", ovr: 89 },
+"Ottawa Senators": { name: "Travis Green", ovr: 80 },
+"Philadelphia Flyers": { name: "Rick Tocchet", ovr: 85 },
+"Pittsburgh Penguins": { name: "Dan Muse", ovr: 85 },
+"San Jose Sharks": { name: "Ryan Warsofsky", ovr: 77 },
+"Seattle Kraken": { name: "Lane Lambert", ovr: 80 },
+"St. Louis Blues": { name: "Jim Montgomery", ovr: 87 },
+"Tampa Bay Lightning": { name: "Jon Cooper", ovr: 92 },
+"Toronto Maple Leafs": { name: "Craig Berube", ovr: 84 },
+"Utah Mammoth": { name: "André Tourigny", ovr: 78 },
+"Vancouver Canucks": { name: "Adam Foote", ovr: 83 },
+"Vegas Golden Knights": { name: "Bruce Cassidy", ovr: 88 },
+"Washington Capitals": { name: "Spencer Carbery", ovr: 80 },
+"Winnipeg Jets": { name: "Scott Arniel", ovr: 80 }
+};
+
+let coachPool = [
+{name:"Dan Bylsma",ovr:82},{name:"Luke Richardson",ovr:79},{name:"John Tortorella",ovr:84},
+{name:"Greg Cronin",ovr:80},{name:"Peter Laviolette",ovr:88},{name:"Derek Lalonde",ovr:81},{name:"Drew Bannister",ovr:80}
+];
+
+let teamCoaches = {};
+Object.keys(realCoaches).forEach(team => { teamCoaches[team] = {...realCoaches[team]}; });
+
+let currentYear = 2025;
+
+const draftPickValues = {
+  1: 90,
+  2: 80,
+  3: 72,
+  4: 65,
+  5: 58,
+  6: 52,
+  7: 48
+};
+
+let teamPicks = {};
+Object.keys(teams).forEach(team => {
+  teamPicks[team] = [];
+  for (let r = 1; r <= 7; r++) {
+    teamPicks[team].push({
+      round: r,
+      value: draftPickValues[r]
+    });
+  }
+});
+
+function getPlayerTradeValue(player) {
+  let base = player.ovr * 1.2;
+
+  if (player.ovr >= 90) base += 25;
+  else if (player.ovr >= 85) base += 15;
+  else if (player.ovr >= 80) base += 5;
+
+  return Math.round(base);
+}
+
+/* ================= AHL UI ================= */
+function openAHL() {
+  const ahl = ahlTeams[currentTeam];
+  if (!ahl) {
+    document.getElementById("output").innerHTML = "No AHL team found.";
+    return;
+  }
+
+  document.getElementById("output").innerHTML = `
+    <h3 style="color:${ahl.color}">${ahl.name}</h3>
+    <b>AHL Players:</b><br>
+    ${ahl.players.map((p,i) =>
+      `${p.name} (${p.ovr}) 
+      <button onclick="callUp(${i})">Call Up</button>`
+    ).join("<br>")}
+    <hr>
+    <b>Send Down:</b><br>
+    ${roster.map((p,i) =>
+      `${p.name} (${p.ovr})
+      <button onclick="sendDown(${i})">Send Down</button>`
+    ).join("<br>")}
+  `;
+}
+function callUp(i) {
+  const ahl = ahlTeams[currentTeam];
+  if (roster.length >= 23) {
+    alert("Roster full!");
+    return;
+  }
+  roster.push(ahl.players[i]);
+  ahl.players.splice(i, 1);
+  openAHL();
+}
+
+function sendDown(i) {
+  const ahl = ahlTeams[currentTeam];
+  ahl.players.push(roster[i]);
+  roster.splice(i, 1);
+  openAHL();
+}
+
+/* ================= SIM VARIABLES ================= */
+let roster=[],currentTeam="",cups=0;
+let seasonStart=2025,seasonEnd=26;
+
+const MAX_SEASONS = 100;
+let seasonsSimmed = 0;
+
+/* ================= INIT TEAM DROPDOWN ================= */
+const teamDropdown = document.getElementById("teamDropdown");
+Object.keys(teams).forEach(t=>{
+  const o=document.createElement("option");
+  o.value=t;o.textContent=t;
+  teamDropdown.appendChild(o);
+});
+
+/* ================= FUNCTIONS ================= */
+function applyTheme(){ const t=teams[currentTeam]; document.body.style.background=`linear-gradient(135deg,${t.c1},${t.c2})`; document.body.style.color=t.t; document.querySelectorAll(".box").forEach(b=>b.style.background=t.c2+"dd"); document.querySelectorAll("button").forEach(b=>{ b.style.background=t.c1; b.style.color=t.t; }); }
+function updateArena(){ document.getElementById("arenaText").textContent = `Home Arena: ${arenas[currentTeam] || "Unknown"}`; }
+function updateSeason(){ document.getElementById("seasonText").textContent=`Season: ${seasonStart}–${seasonEnd}`; }
+
+function startFranchise(){
+  currentTeam = teamDropdown.value;
+  roster = teams[currentTeam].p.map(p => ({
+    name: p[0],
+    ovr: p[1],
+    position: p[2] || "F", // default forward if no position
+    goals: 0,
+    assists: 0,
+    points: 0
+  }));
+
+  // Reset points for all players
+  roster.forEach(p => {
+    if(p.position !== "G"){
+      p.goals = 0;
+      p.assists = 0;
+      p.points = 0;
+    } else {
+      p.goals = 0;
+      p.assists = 0;
+      p.points = 0;
+    }
+  });
+
+  document.getElementById("teamName").textContent = currentTeam;
+  document.getElementById("cupsWon").textContent = `Stanley Cups Won: ${cups}`;
+  updateSeason();
+  applyTheme();
+  updateArena();
+  document.getElementById("teamSelect").classList.add("hidden");
+  document.getElementById("franchise").classList.remove("hidden");
+}
+
+function viewRoster(){
+  if(roster.length===0){ document.getElementById("output").innerHTML="<b>No players on roster!</b>"; return; }
+  document.getElementById("output").innerHTML = roster.map(p=>`${p.name} (${p.ovr})`).join("<br>");
+}
+
+function openFreeAgents(){
+  if(freeAgents.length===0){ document.getElementById("output").innerHTML="<b>No free agents available!</b>"; return; }
+  document.getElementById("output").innerHTML = freeAgents.map((p,i)=>`${p.name} (${p.ovr}) <button data-index='${i}' class='fa-btn'>Sign</button>`).join("<br>");
+  document.querySelectorAll(".fa-btn").forEach(btn=>btn.addEventListener("click",()=>{
+    let i=parseInt(btn.dataset.index);
+    roster.push({name:freeAgents[i].name,ovr:freeAgents[i].ovr});
+    freeAgents.splice(i,1);
+    viewRoster();
+  }));
+}
+
+function buyoutPlayer(){
+  if(roster.length<=5){ alert("Cannot have fewer than 5 players!"); return; }
+  let name=prompt("Enter player name to buyout:");
+  let idx=roster.findIndex(p=>p.name.toLowerCase()===name.toLowerCase());
+  if(idx!==-1){ roster.splice(idx,1); viewRoster(); } else alert("Player not found on your team."); 
+}
+
+/* ================= TRADES ================= */
+function openTrades() {
+  let html = "<b>Select a team to trade with:</b><br>";
+  Object.keys(teams).filter(t => t !== currentTeam).forEach(team => {
+    html += `<button onclick="selectTradePartner('${team}')">${team}</button><br>`;
+  });
+  document.getElementById("output").innerHTML = html;
+}
+
+let tradePartner = null;
+let targetPlayer = null;
+
+function selectTradePartner(team) {
+  tradePartner = team;
+  let html = `<b>Select player from ${team}:</b><br>`;
+  teams[team].p.forEach((p,i) => {
+    html += `${p[0]} (${p[1]}) <button onclick="selectTargetPlayer(${i})">Target</button><br>`;
+  });
+  document.getElementById("output").innerHTML = html;
+}
+let offeredPlayers = [];
+let offeredPicks = [];
+
+function showTradeOfferScreen() {
+  let html = `<b>Trading for:</b> ${targetPlayer[0]} (${targetPlayer[1]})<br><br>`;
+
+  html += "<b>Your Players:</b><br>";
+  roster.forEach((p,i) => {
+    html += `${p.name} (${p.ovr}) <button onclick="offerPlayer(${i})">Offer</button><br>`;
+  });
+
+  html += "<br><b>Your Picks:</b><br>";
+  teamPicks[currentTeam].forEach((p,i) => {
+    html += `${p.label} <button onclick="offerPick(${i})">Offer</button><br>`;
+  });
+
+  html += `<br><button onclick="finalizeTrade()">Finalize Trade</button>`;
+  document.getElementById("output").innerHTML = html;
+}
+
+function offerPlayer(i) {
+  offeredPlayers.push(roster[i]);
+  alert(`${roster[i].name} added to offer`);
+}
+
+function offerPick(i) {
+  offeredPicks.push(teamPicks[currentTeam][i]);
+  alert(`${teamPicks[currentTeam][i].label} added to offer`);
+}
+
+function selectTargetPlayer(index) {
+  targetPlayer = teams[tradePartner].p[index];
+  showTradeOfferScreen();
+}
+function finalizeTrade() {
+  let offeredValue = 0;
+
+  offeredPlayers.forEach(p => offeredValue += getPlayerTradeValue(p));
+  offeredPicks.forEach(p => offeredValue += p.value);
+
+  let targetValue = getPlayerTradeValue({
+    ovr: targetPlayer[1]
+  });
+
+  // AI demands premium
+  targetValue *= 1.15;
+
+  if (offeredValue < targetValue) {
+    alert("Trade rejected: offer not good enough.");
+    return;
+  }
+
+  // EXECUTE TRADE
+  offeredPlayers.forEach(p => {
+    roster = roster.filter(r => r !== p);
+    teams[tradePartner].p.push([p.name, p.ovr]);
+  });
+
+  offeredPicks.forEach(p => {
+    teamPicks[currentTeam] = teamPicks[currentTeam].filter(x => x !== p);
+    teamPicks[tradePartner].push(p);
+  });
+
+  roster.push({ name: targetPlayer[0], ovr: targetPlayer[1], position: "F" });
+  teams[tradePartner].p = teams[tradePartner].p.filter(p => p !== targetPlayer);
+
+  document.getElementById("output").innerHTML =
+    `<b>Trade completed!</b><br>You acquired ${targetPlayer[0]}`;
+}
+
+function viewDraftPicks() {
+  if (!teamPicks[currentTeam] || teamPicks[currentTeam].length === 0) {
+    document.getElementById("output").innerHTML = "<b>No draft picks available.</b>";
+    return;
+  }
+
+  let html = `<b>${currentTeam} Draft Picks:</b><br>`;
+  teamPicks[currentTeam].forEach(p => {
+    html += `${p.label}<br>`;
+  });
+
+  document.getElementById("output").innerHTML = html;
+}
+
+/* ================= COACH FUNCTIONS ================= */
+function viewCoach(){
+  const c = teamCoaches[currentTeam];
+  document.getElementById("output").innerHTML = `<b>Head Coach:</b> ${c ? c.name + ' ('+c.ovr+')' : "Vacant"}`;
+}
+
+function fireCoach(){
+  teamCoaches[currentTeam] = null;
+  document.getElementById("output").innerHTML="<b>Coach Fired!</b>";
+}
+
+function showCoachPool(){
+  if(!teamCoaches[currentTeam]){
+    document.getElementById("output").innerHTML="<b>Available Coaches:</b><br>"+
+      coachPool.map((c,i)=>`${c.name} (${c.ovr}) <button onclick='hireCoach(${i})'>Hire</button>`).join("<br>");
+  } else {
+    document.getElementById("output").innerHTML="<b>You must fire your current coach first!</b>";
+  }
+}
+
+function hireCoach(i){
+  teamCoaches[currentTeam] = {...coachPool[i]};
+  coachPool.splice(i,1);
+  document.getElementById("output").innerHTML=`<b>Hired Coach:</b> ${teamCoaches[currentTeam].name} (${teamCoaches[currentTeam].ovr})`;
+}
+
+/* ================= SEASON SIMULATION ================= */
+function simSeason() {
+
+  if (seasonsSimmed >= MAX_SEASONS) {
+    document.getElementById("output").innerHTML =
+      "<b>Franchise Mode Complete.</b><br>You have reached the end of the 2125–26 season.";
+    return;
+  }
+
+  if (roster.length < 3) { 
+    alert("Cannot simulate season with fewer than 3 players!"); 
+    return; 
+  }
+
+  // --- 1. Update player stats (skaters only) ---
+  roster.forEach(p => {
+    if (p.position !== "G") {
+      let minPoints, maxPoints;
+      if (p.ovr < 80) { minPoints = 35; maxPoints = 60; }
+      else if (p.ovr < 85) { minPoints = 55; maxPoints = 80; }
+      else if (p.ovr < 90) { minPoints = 75; maxPoints = 100; }
+      else { minPoints = 90; maxPoints = 120; }
+
+      p.points = Math.floor(minPoints + Math.random() * (maxPoints - minPoints + 1));
+      let goalRatio = 0.45 + Math.random() * 0.1;
+      p.goals = Math.floor(p.points * goalRatio);
+      p.assists = p.points - p.goals;
+    } else {
+      p.goals = 0; p.assists = 0; p.points = 0;
+    }
+  });
+
+  // --- 2. Calculate team overall ---
+  let teamOVR = Math.round(roster.reduce((a,b) => a + b.ovr, 0) / roster.length);
+  if (teamCoaches[currentTeam]) teamOVR += Math.round(teamCoaches[currentTeam].ovr * 0.03);
+
+  // --- 3. Generate season record based on overall ---
+  // Higher overall => more wins, fewer losses, realistic OTL
+  let winFactor = (teamOVR - 75) / 10; // 75 OVR baseline
+  let wins = Math.floor(35 + Math.random() * 10 + winFactor * 10); // ~35-55+ wins
+  if (wins > 82) wins = 82;
+
+  let otl = Math.floor(Math.random() * 8) + 5; // 5-12 OTL
+  let losses = 82 - wins - otl;
+  if (losses < 0) { losses = 0; otl = 82 - wins; }
+
+  // --- 4. Playoffs simulation ---
+  let playoffResult = "";
+
+  // Adjust playoff chance based on overall
+  let playoffChance = 0.5 + (teamOVR - 83) * 0.05; // 83 OVR baseline 50%
+  playoffChance = Math.min(Math.max(playoffChance, 0), 0.95);
+
+  let madePlayoffs = Math.random() < playoffChance;
+
+  if (madePlayoffs) {
+    let rounds = ["Round 1", "Round 2", "Conference Finals", "Stanley Cup Finals"];
+    let roundChance = 0.3 + (teamOVR - 80) * 0.015 + (teamCoaches[currentTeam]?.ovr || 0) * 0.002;
+    let survived = true;
+
+    for (let i = 0; i < rounds.length; i++) {
+      if (Math.random() > roundChance) {
+        playoffResult = `Eliminated in ${rounds[i]}`;
+        survived = false;
+        break;
+      }
+      roundChance *= 0.9; // Next round slightly harder
+    }
+
+    if (survived) {
+      playoffResult = "Won Stanley Cup!🏆";
+      cups++;
+    }
+  } else {
+    playoffResult = "Missed Playoffs";
+  }
+
+  // --- 5. Output ---
+  document.getElementById("cupsWon").textContent = `Stanley Cups Won: ${cups}`;
+  document.getElementById("output").innerHTML = `
+    Season Result: ${wins}-${losses}-${otl}<br>
+    ${playoffResult}
+  `;
+
+  seasonStart++;
+  seasonEnd++;
+  updateSeason();
+
+  seasonsSimmed++;
+}
+
+currentYear++;
+
+Object.keys(teamPicks).forEach(team => {
+  teamPicks[team] = [];
+  for (let r = 1; r <= 7; r++) {
+    teamPicks[team].push({
+      label: `Round ${r} Pick`,
+      round: r,
+      value: draftPickValues[r]
+    });
+  }
+});
+
+/* ================= RELOCATION ================= */
+function relocateTeam(){
+  let options = relocationCities.map((c,i)=>
+    `${c} <button data-index='${i}' class='reloc-btn'>Move Here</button>`).join("<br>");
+  document.getElementById("output").innerHTML = `<b>Choose New City:</b><br>${options}`;
+  document.querySelectorAll(".reloc-btn").forEach(btn=>btn.addEventListener("click",()=>pickRelocation(parseInt(btn.dataset.index))));
+}
+
+function pickRelocation(index){
+  let city = relocationCities[index];
+  let nameOptions = relocationNames.map((n,i)=>
+    `${n} <button onclick="finalizeRelocation('${city}','${n}')">Use This Name</button>`).join("<br>");
+  document.getElementById("output").innerHTML = `<b>Pick New Team Name for ${city}:</b><br>${nameOptions}`;
+}
+
+function finalizeRelocation(city,newName){
+  let oldTeamData = teams[currentTeam];
+  let oldCoach = teamCoaches[currentTeam];
+  let oldRoster = roster;
+  let newTeamKey = city+" "+newName;
+  teams[newTeamKey] = {...oldTeamData};
+  teams[newTeamKey].p = oldRoster.map(p=>[p.name,p.ovr]);
+  teamCoaches[newTeamKey] = oldCoach;
+  let colors = relocationColors[city];
+  teams[newTeamKey].c1 = colors.c1; teams[newTeamKey].c2 = colors.c2; teams[newTeamKey].t = colors.t;
+  arenas[newTeamKey] = colors.arena;
+  delete teams[currentTeam]; delete teamCoaches[currentTeam]; delete arenas[currentTeam];
+  currentTeam = newTeamKey;
+  document.getElementById("teamName").textContent=currentTeam;
+  applyTheme();
+  updateArena();
+  viewRoster();
+  document.getElementById("output").innerHTML += `<br><b>Team relocated to ${currentTeam}!</b>`;
+}
+
+function viewDashboard(){
+  if(roster.length === 0){
+    document.getElementById("output").innerHTML = "<b>No players on roster!</b>";
+    return;
+  }
+
+  // Team overall
+  let teamOVR = Math.round(roster.reduce((sum,p)=>sum+p.ovr,0)/roster.length);
+
+  // Best player (OVR)
+  let bestPlayer = roster.reduce((best,p) => p.ovr > best.ovr ? p : best, roster[0]);
+
+  // Skaters only (default to empty array if none)
+  let skaters = roster.filter(p => p.position !== "G");
+
+  // Most Goals
+  let topGoals = skaters.length ? skaters.reduce((best,p)=>p.goals>best.goals?p:best, skaters[0]) : {name:"N/A", goals:0};
+
+  // Most Assists
+  let topAssists = skaters.length ? skaters.reduce((best,p)=>p.assists>best.assists?p:best, skaters[0]) : {name:"N/A", assists:0};
+
+  // Most Points
+  let topPoints = skaters.length ? skaters.reduce((best,p)=>p.points>best.points?p:best, skaters[0]) : {name:"N/A", points:0};
+
+  document.getElementById("output").innerHTML = `
+    <b>Team Overall:</b> ${teamOVR}<br>
+    <b>Best Player:</b> ${bestPlayer.name} (${bestPlayer.ovr})<br>
+    <b>Most Goals:</b> ${topGoals.name} (${topGoals.goals})<br>
+    <b>Most Assists:</b> ${topAssists.name} (${topAssists.assists})<br>
+    <b>Most Points:</b> ${topPoints.name} (${topPoints.points})
+  `;
+}
+
+</script>
+</body>
+</html>
