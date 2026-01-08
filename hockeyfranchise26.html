@@ -60,38 +60,38 @@ select { padding:8px; border-radius:6px; font-family:'Barlow',sans-serif; }
 <script>
 /* ================= TEAM DATA ================= */
 const teams = {
-"Anaheim Ducks":{c1:"#F47A38",c2:"#B09862",t:"#000",p:[["Mason McTavish",88,"F"],["Leo Carlsson",85,"F"],["Ville Husso",84,"G"],["Sam Colangelo",80,"F"],["Mikael Granlund",82,"F"],["Chris Kreider",84,"F"],["Pavel Mintyukov",78,"F"],["Alex Killorn",81,"F"],["Troy Terry",83,"F"]]},
-"Boston Bruins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["David Pastrnak",91,"F"],["Charlie McAvoy",89,"F"],["Elias Lindholm",87,"F"],["Viktor Arvidsson",84,"F"],["Mason Lohrei",76,"F"],["Joonas Korpisalo",81,"G"],["Tanner Jeannot",78,"F"],["Jordan Harris",77,"D"],["Andrew Peeke",75,"F"]]},
-"Buffalo Sabres":{c1:"#002654",c2:"#FDBB2F",t:"#fff",p:[["Tage Thompson",87,"F"],["Rasmus Dahlin",89,"F"],["Alex Tuch",86,"F"],["Zach Benson",80,"F"],["Peyton Krebs",77,"F"],["Jiri Kulich",78,"F"],["Josh Norris",81,"F"],["Ukko-Pekka Luukkonen",84,"G"],["Tyson Kozak",76,"F"]]},
-"Calgary Flames":{c1:"#C8102E",c2:"#F1BE48",t:"#fff",p:[["Nazem Kadri",85,"F"],["Yegor Sharangovich",84,"F"],["Mackenzie Weegar",87,"F"],["Rasmus Andersson",83,"F"],["Matvei Gridin",77,"F"],["Martin Pospisil",78,"F"],["Blake Coleman",81,"F"],["Joel Farabee",82,"F"],["Dustin Wolf",83,"G"]]},
-"Carolina Hurricanes":{c1:"#CC0000",c2:"#000000",t:"#fff",p:[["Sebastian Aho",89,"F"],["Andrei Svechnikov",87,"F"],["Jaccob Slavin",88,"F"],["Nikolaj Ehlers",87,"F"],["Seth Jarvis",82,"F"],["Pyotr Kochetkov",81,"G"],["Jesperi Kotkaniemi",80,"F"],["Taylor Hall",79,"F"],["Alexander Nikishin",84,"F"]]},
-"Chicago Blackhawks":{c1:"#CF0A2C",c2:"#000000",t:"#fff",p:[["Connor Bedard",88,"F"],["Spencer Knight",85,"G"],["Tyler Bertuzzi",85,"F"],["Andre Burakovsky",84,"F"],["Sam Lafferty",76,"F"],["Teuvo Teravainen",83,"F"],["Ilya Mikheyev",81,"F"],["Colton Dach",78,"F"],["Frank Nazar",81,"F"]]},
-"Colorado Avalanche":{c1:"#6F263D",c2:"#236192",t:"#fff",p:[["Nathan MacKinnon",94,"F"],["Cale Makar",93,"F"],["Valeri Nichushkin",87,"F"],["Ross Colton",82,"F"],["Samuel Girard",83,"F"],["Devon Toews",84,"F"],["Mackenzie Blackwood",81,"G"],["Artturi Lehkonen",80,"F"],["Brent Burns",84,"F"]]},
-"Columbus Blue Jackets":{c1:"#002654",c2:"#CE1126",t:"#fff",p:[["Adam Fantilli",87,"F"],["Zach Werenski",88,"F"],["Boone Jenner",83,"F"],["Charlie Coyle",82,"F"],["Isac Lundestrom",78,"F"],["Elvis Merzlikins",83,"G"],["Dante Fabbro",81,"F"],["Cole Sillinger",80,"F"],["Mason Marchment",83,"F"]]},
-"Dallas Stars":{c1:"#006847",c2:"#8F8F8C",t:"#fff",p:[["Jason Robertson",90,"F"],["Roope Hintz",88,"F"],["Miro Heiskanen",91,"F"],["Matt Duchene",84,"F"],["Jake Oettinger",90,"G"],["Thomas Harley",78,"F"],["Radek Faksa",79,"F"],["Esa Lindell",81,"F"],["Colin Blackwell",78,"F"]]},
-"Detroit Red Wings":{c1:"#CE1126",c2:"#FFFFFF",t:"#000",p:[["Dylan Larkin",87,"F"],["Lucas Raymond",86,"F"],["Alex DeBrincat",88,"F"],["Patrick Kane",87,"F"],["Simon Edvinsson",80,"F"],["Cam Talbot",81,"G"],["J.T. Compher",78,"F"],["Ben Chiarot",77,"F"],["Moritz Seider",89,"F"]]},
-"Edmonton Oilers":{c1:"#041E42",c2:"#FF4C00",t:"#fff",p:[["Connor McDavid",97,"F"],["Leon Draisaitl",94,"F"],["Evan Bouchard",89,"F"],["Ryan Nugent-Hopkins",85,"F"],["Zach Hyman",87,"F"],["Tristan Jarry",85,"G"],["Darnell Nurse",88,"D"],["Andrew Mangiapane",82,"F"],["Trent Frederic",80,"F"]]},
-"Florida Panthers":{c1:"#C8102E",c2:"#041E42",t:"#fff",p:[["Brad Marchand",90,"F"],["Sam Reinhart",88,"F"],["Anton Lundell",86,"F"],["Aaron Ekblad",86,"F"],["Gustav Forsling",81,"F"],["Sergei Bobrovsky",84,"G"],["Luke Kunin",80,"F"],["Seth Jones",87,"F"],["Matthew Tkachuk",91,"F"]]},
-"Los Angeles Kings":{c1:"#111111",c2:"#A2AAAD",t:"#fff",p:[["Anze Kopitar",86,"F"],["Drew Doughty",84,"F"],["Adrian Kempe",85,"F"],["Corey Perry",84,"F"],["Joel Armia",78,"F"],["Trevor Moore",80,"F"],["Samuel Helenius",77,"F"],["Alex Turcotte",78,"F"],["Jeff Malott",78,"F"]]},
-"Minnesota Wild":{c1:"#154734",c2:"#A6192E",t:"#fff",p:[["Quinn Hughes",92,"F"],["Kirill Kaprizov",90,"F"],["Matt Boldy",87,"F"],["Filip Gustavsson",82,"G"],["Marcus Johansson",80,"F"],["Vinnie Hinostroza",79,"F"],["Yakov Trenin",78,"F"],["Nico Sturm",77,"F"],["Ben Jones",76,"F"]]},
-"Montreal Canadiens":{c1:"#AF1E2D",c2:"#192168",t:"#fff",p:[["Nick Suzuki",88,"F"],["Juraj Slafkovsky",84,"F"],["Cole Caufield",86,"F"],["Josh Anderson",85,"F"],["Owen Beck",75,"F"],["Sammy Blais",78,"F"],["Joe Veleno",80,"F"],["Jakub Dobeš",83,"G"],["Alexandre Carrier",79,"F"]]},
-"Nashville Predators":{c1:"#FFB81C",c2:"#041E42",t:"#fff",p:[["Filip Forsberg",86,"F"],["Roman Josi",89,"F"],["Juuse Saros",83,"G"],["Steven Stamkos",89,"F"],["Ryan O'Reilly",87,"F"],["Tyson Jost",82,"F"],["Adam Wilsby",78,"F"],["Kevin Gravel",76,"F"], ["Jordan Oesterle",77,"F"]]},
-"New Jersey Devils":{c1:"#CE1126",c2:"#000000",t:"#fff",p:[["Jack Hughes",91,"F"],["Nico Hischier",87,"F"],["Dougie Hamilton",86,"F"],["Timo Meier",87,"F"],["Evgenii Dadonov",81,"F"],["Connor Brown",80,"F"],["Arseni Gritsyuk",78,"F"],["Seamus Casey",77,"F"],["Jacob Markstrom",91,"G"]]},
-"NY Islanders":{c1:"#00539B",c2:"#F47D30",t:"#fff",p:[["Mathew Barzal",88,"F"],["Bo Horvat",87,"F"],["Ilya Sorokin",90,"G"],["Anders Lee",85,"F"],["Matthew Schaefer",83,"F"],["Jean-Gabriel Pageau",81,"F"],["Simon Holmstrom",78,"F"],["Tony DeAngelo",78,"F"],["Kyle Palmieri",82,"F"]]},
-"NY Rangers":{c1:"#0038A8",c2:"#CE1126",t:"#fff",p:[["Artemi Panarin",91,"F"],["Mika Zibanejad",88,"F"],["Igor Shesterkin",92,"G"],["Adam Fox",92,"F"],["Alexis Lafreniere",80,"F"],["Braden Schneider",77,"F"],["Vincent Trocheck",86,"F"],["J.T. Miller",89,"F"],["Conor Sheary",77,"F"]]},
-"Ottawa Senators":{c1:"#C52032",c2:"#000000",t:"#fff",p:[["Brady Tkachuk",88,"F"],["Tim Stützle",89,"F"],["Thomas Chabot",85,"F"],["Claude Giroux",85,"F"],["David Perron",83,"F"],["Lars Eller",79,"F"],["Nick Cousins",78,"F"],["Nick Jensen",81,"F"],["Leevi Merilainen",82,"G"]]},
-"Philadelphia Flyers":{c1:"#F74902",c2:"#000000",t:"#fff",p:[["Travis Konecny",86,"F"],["Owen Tippett",84,"F"],["Sean Couturier",83,"F"],["Noah Cates",82,"F"],["Philip Tomasino",82,"F"],["Samuel Ersson",83,"G"],["Matvei Michkov",86,"F"],["Trevor Zegras",89,"F"],["Bobby Brink",85,"F"]]},
-"Pittsburgh Penguins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["Sidney Crosby",89,"F"],["Evgeni Malkin",86,"F"],["Kris Letang",85,"F"],["Erik Karlsson",89,"F"],["Noel Acciari",81,"F"],["Justin Brazeau",80,"F"],["Ville Koivunen",79,"F"],["Ben Kindel",81,"F"],["Arturs Silovs",83,"G"]]},
-"San Jose Sharks":{c1:"#006D75",c2:"#EA7200",t:"#fff",p:[["Macklin Celebrini",88,"F"],["Jeff Skinner",81,"F"],["John Klingberg",83,"F"],["William Eklund",81,"F"],["Ryan Reaves",75,"F"],["Collin Graf",80,"F"],["Shakir Mukhamadullin",78,"F"],["Yaroslav Askarov",85,"G"],["Igor Chernyshov",82,"F"]]},
-"Seattle Kraken":{c1:"#001628",c2:"#99D9D9",t:"#fff",p:[["Matty Beniers",85,"F"],["Jared McCann",84,"F"],["Vince Dunn",85,"F"],["Jordan Eberle",83,"F"],["Kaapo Kakko",88,"F"],["Berkly Catton",79,"F"],["Frederick Gaudreau",82,"F"],["Brandon Montour",86,"F"],["Ryker Evans",83,"F"]]},
-"St. Louis Blues":{c1:"#002F87",c2:"#FCB514",t:"#fff",p:[["Robert Thomas",88,"F"],["Jordan Kyrou",86,"F"],["Colton Parayko",85,"F"],["Jonatan Berggren",83,"F"],["Pius Suter",83,"F"],["Nick Bjugstad",80,"F"],["Mathieu Joseph",81,"F"],["Logan Mailloux",79,"F"],["Jimmy Snuggerud",78,"F"]]},
-"Tampa Bay Lightning":{c1:"#002868",c2:"#FFFFFF",t:"#000",p:[["Nikita Kucherov",94,"F"],["Brayden Point",90,"F"],["Victor Hedman",88,"F"],["Andre Vasilevskiy",93,"G"],["Pontus Holmberg",80,"F"],["Darren Raddysh",80,"F"],["Conor Geekie",81,"F"],["Max Crozier",78,"F"],["Charle-Edouard D'Astous",77,"F"]]},
-"Toronto Maple Leafs":{c1:"#00205B",c2:"#FFFFFF",t:"#000",p:[["Auston Matthews",94,"F"],["William Nylander",88,"F"],["Max Domi",84,"F"],["Matthew Knies",84,"F"],["John Tavares",91,"F"],["Bobby McMann",79,"F"],["Matias Maccelli",80,"F"],["Morgan Rielly",88,"F"],["Steven Lorentz",79,"F"]]},
-"Utah Mammoth":{c1:"#7EC8E3",c2:"#000000",t:"#fff",p:[["Clayton Keller",88,"F"],["Barrett Hayton",83,"F"],["Nick Schmaltz",85,"F"],["Logan Cooley",82,"F"],["Lawson Crouse",79,"F"],["Michael Carcone",79,"F"],["Brandon Tanev",80,"F"],["Sean Durzi",81,"F"],["Karel Vejmelka",82,"G"]]},
-"Vancouver Canucks":{c1:"#00205B",c2:"#00843D",t:"#fff",p:[["Elias Pettersson",90,"F"],["Brock Boeser",87,"F"],["Filip Hronek",86,"F"],["Jake DeBrusk",83,"F"],["Jonathan Lekkerimäki",80,"F"],["Marco Rossi",82,"F"],["Teddy Blueger",78,"F"],["Derek Forbort",77,"F"],["Kevin Lankinen",82,"G"]]},
-"Vegas Golden Knights":{c1:"#B4975A",c2:"#333F42",t:"#000",p:[["Jack Eichel",90,"F"],["Mark Stone",88,"F"],["Tomas Hertl",87,"F"],["Ivan Barbashev",86,"F"],["Pavel Dorofeyev",79,"F"],["Brayden McNabb",84,"F"],["Keegan Kolesar",80,"F"],["Ben Hutton",77,"F"],["Akira Schmid",82,"G"]]},
-"Washington Capitals":{c1:"#041E42",c2:"#C8102E",t:"#fff",p:[["Alex Ovechkin",86,"F"],["Dylan Strome",84,"F"],["John Carlson",85,"F"],["Pierre-Luc Dubois",87,"F"],["Justin Sourdif",81,"F"],["Dylan McIlrath",76,"F"],["Hendrix Lapierre",78,"F"],["Nic Dowd",82,"F"],["Charlie Lindgren",83,"G"]]},
-"Winnipeg Jets":{c1:"#041E42",c2:"#AC162C",t:"#fff",p:[["Kyle Connor",88,"F"],["Mark Scheifele",87,"F"],["Connor Hellebuyck",90,"G"],["Nikita Chibrikov",82,"F"],["Gustav Nyquist",82,"F"],["Tanner Pearson",80,"F"],["Vladislav Namestnikov",82,"F"],["Neal Pionk",85,"F"],["Jonathan Toews",82,"F"]]}
+"Anaheim Ducks":{c1:"#F47A38",c2:"#B09862",t:"#000",p:[["Mason McTavish",88,"F"],["Leo Carlsson",85,"F"],["Ville Husso",84,"G"],["Sam Colangelo",80,"F"],["Mikael Granlund",82,"F"],["Chris Kreider",84,"F"],["Pavel Mintyukov",78,"F"],["Alex Killorn",81,"F"],["Troy Terry",83,"F"],["Ross Johnston",77,"F"]]},
+"Boston Bruins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["David Pastrnak",91,"F"],["Charlie McAvoy",89,"F"],["Elias Lindholm",87,"F"],["Viktor Arvidsson",84,"F"],["Mason Lohrei",76,"F"],["Joonas Korpisalo",81,"G"],["Tanner Jeannot",78,"F"],["Jordan Harris",77,"D"],["Andrew Peeke",75,"F"],["Marat Khusnutdinov",80,"F"]]},
+"Buffalo Sabres":{c1:"#002654",c2:"#FDBB2F",t:"#fff",p:[["Tage Thompson",87,"F"],["Rasmus Dahlin",89,"F"],["Alex Tuch",86,"F"],["Zach Benson",80,"F"],["Peyton Krebs",77,"F"],["Jiri Kulich",78,"F"],["Josh Norris",81,"F"],["Ukko-Pekka Luukkonen",84,"G"],["Tyson Kozak",76,"F"],["Jordan Greenway",80,"F"]]},
+"Calgary Flames":{c1:"#C8102E",c2:"#F1BE48",t:"#fff",p:[["Nazem Kadri",85,"F"],["Yegor Sharangovich",84,"F"],["Mackenzie Weegar",87,"F"],["Rasmus Andersson",83,"F"],["Matvei Gridin",77,"F"],["Martin Pospisil",78,"F"],["Blake Coleman",81,"F"],["Joel Farabee",82,"F"],["Dustin Wolf",83,"G"],["Ryan Lomberg",79,"F"]]},
+"Carolina Hurricanes":{c1:"#CC0000",c2:"#000000",t:"#fff",p:[["Sebastian Aho",89,"F"],["Andrei Svechnikov",87,"F"],["Jaccob Slavin",88,"F"],["Nikolaj Ehlers",87,"F"],["Seth Jarvis",82,"F"],["Pyotr Kochetkov",81,"G"],["Jesperi Kotkaniemi",80,"F"],["Taylor Hall",79,"F"],["Alexander Nikishin",84,"F"],["K'Andre Miller",85,"F"]]},
+"Chicago Blackhawks":{c1:"#CF0A2C",c2:"#000000",t:"#fff",p:[["Connor Bedard",88,"F"],["Spencer Knight",85,"G"],["Tyler Bertuzzi",85,"F"],["Andre Burakovsky",84,"F"],["Sam Lafferty",76,"F"],["Teuvo Teravainen",83,"F"],["Ilya Mikheyev",81,"F"],["Colton Dach",78,"F"],["Frank Nazar",81,"F"],["Nick Foligno",81,"F"]]},
+"Colorado Avalanche":{c1:"#6F263D",c2:"#236192",t:"#fff",p:[["Nathan MacKinnon",94,"F"],["Cale Makar",93,"F"],["Valeri Nichushkin",87,"F"],["Ross Colton",82,"F"],["Samuel Girard",83,"F"],["Devon Toews",84,"F"],["Mackenzie Blackwood",81,"G"],["Artturi Lehkonen",85,"F"],["Brent Burns",83,"F"],["Martin Necas",89,"F"]]},
+"Columbus Blue Jackets":{c1:"#002654",c2:"#CE1126",t:"#fff",p:[["Adam Fantilli",87,"F"],["Zach Werenski",88,"F"],["Boone Jenner",83,"F"],["Charlie Coyle",82,"F"],["Isac Lundestrom",78,"F"],["Elvis Merzlikins",83,"G"],["Dante Fabbro",81,"F"],["Cole Sillinger",80,"F"],["Mason Marchment",83,"F"],["Egor Zamula",81,"F"]]},
+"Dallas Stars":{c1:"#006847",c2:"#8F8F8C",t:"#fff",p:[["Jason Robertson",90,"F"],["Roope Hintz",88,"F"],["Miro Heiskanen",91,"F"],["Matt Duchene",84,"F"],["Jake Oettinger",90,"G"],["Thomas Harley",78,"F"],["Radek Faksa",79,"F"],["Esa Lindell",81,"F"],["Colin Blackwell",78,"F"],["Jamie Benn",82,"F"]]},
+"Detroit Red Wings":{c1:"#CE1126",c2:"#FFFFFF",t:"#000",p:[["Dylan Larkin",87,"F"],["Lucas Raymond",86,"F"],["Alex DeBrincat",88,"F"],["Patrick Kane",87,"F"],["Simon Edvinsson",80,"F"],["Cam Talbot",81,"G"],["J.T. Compher",78,"F"],["Ben Chiarot",77,"F"],["Moritz Seider",89,"F"],["James van Riemsdyk",81,"F"]]},
+"Edmonton Oilers":{c1:"#041E42",c2:"#FF4C00",t:"#fff",p:[["Connor McDavid",97,"F"],["Leon Draisaitl",94,"F"],["Evan Bouchard",89,"F"],["Ryan Nugent-Hopkins",85,"F"],["Zach Hyman",87,"F"],["Tristan Jarry",85,"G"],["Darnell Nurse",88,"D"],["Andrew Mangiapane",82,"F"],["Trent Frederic",80,"F"],["Jack Roslovic",82,"F"]]},
+"Florida Panthers":{c1:"#C8102E",c2:"#041E42",t:"#fff",p:[["Brad Marchand",90,"F"],["Sam Reinhart",88,"F"],["Anton Lundell",86,"F"],["Aaron Ekblad",86,"F"],["Gustav Forsling",84,"F"],["Sergei Bobrovsky",84,"G"],["Luke Kunin",80,"F"],["Seth Jones",87,"F"],["Matthew Tkachuk",91,"F"],["Carter Verhaeghe",87,"F"]]},
+"Los Angeles Kings":{c1:"#111111",c2:"#A2AAAD",t:"#fff",p:[["Anze Kopitar",86,"F"],["Drew Doughty",84,"F"],["Adrian Kempe",85,"F"],["Corey Perry",84,"F"],["Joel Armia",78,"F"],["Trevor Moore",80,"F"],["Samuel Helenius",77,"F"],["Alex Turcotte",78,"F"],["Jeff Malott",78,"F"],["Quinton Byfield",86,"F"]]},
+"Minnesota Wild":{c1:"#154734",c2:"#A6192E",t:"#fff",p:[["Quinn Hughes",92,"F"],["Kirill Kaprizov",90,"F"],["Matt Boldy",87,"F"],["Filip Gustavsson",82,"G"],["Marcus Johansson",80,"F"],["Vinnie Hinostroza",79,"F"],["Yakov Trenin",78,"F"],["Nico Sturm",77,"F"],["Ben Jones",76,"F"],["Mats Zuccarello",87,"F"]]},
+"Montreal Canadiens":{c1:"#AF1E2D",c2:"#192168",t:"#fff",p:[["Nick Suzuki",88,"F"],["Juraj Slafkovsky",84,"F"],["Cole Caufield",86,"F"],["Josh Anderson",85,"F"],["Owen Beck",75,"F"],["Sammy Blais",78,"F"],["Joe Veleno",80,"F"],["Jakub Dobeš",83,"G"],["Alexandre Carrier",79,"F"],["Ivan Demidov",86,"F"]]},
+"Nashville Predators":{c1:"#FFB81C",c2:"#041E42",t:"#fff",p:[["Filip Forsberg",86,"F"],["Roman Josi",89,"F"],["Juuse Saros",83,"G"],["Steven Stamkos",89,"F"],["Ryan O'Reilly",87,"F"],["Tyson Jost",82,"F"],["Adam Wilsby",78,"F"],["Kevin Gravel",76,"F"], ["Jordan Oesterle",77,"F"],["Michael Bunting",83,"F"]]},
+"New Jersey Devils":{c1:"#CE1126",c2:"#000000",t:"#fff",p:[["Jack Hughes",91,"F"],["Nico Hischier",87,"F"],["Dougie Hamilton",86,"F"],["Timo Meier",87,"F"],["Evgenii Dadonov",81,"F"],["Connor Brown",80,"F"],["Arseni Gritsyuk",78,"F"],["Seamus Casey",77,"F"],["Jacob Markstrom",91,"G"],["Luke Hughes",84,"F"]]},
+"NY Islanders":{c1:"#00539B",c2:"#F47D30",t:"#fff",p:[["Mathew Barzal",88,"F"],["Bo Horvat",87,"F"],["Ilya Sorokin",90,"G"],["Anders Lee",85,"F"],["Matthew Schaefer",83,"F"],["Jean-Gabriel Pageau",81,"F"],["Simon Holmstrom",78,"F"],["Tony DeAngelo",78,"F"],["Kyle Palmieri",82,"F"],["Emil Heineman",84,"F"]]},
+"NY Rangers":{c1:"#0038A8",c2:"#CE1126",t:"#fff",p:[["Artemi Panarin",91,"F"],["Mika Zibanejad",88,"F"],["Igor Shesterkin",92,"G"],["Adam Fox",92,"F"],["Alexis Lafreniere",80,"F"],["Braden Schneider",77,"F"],["Vincent Trocheck",86,"F"],["J.T. Miller",89,"F"],["Conor Sheary",77,"F"],["Matt Rempe",78,"F"]]},
+"Ottawa Senators":{c1:"#C52032",c2:"#000000",t:"#fff",p:[["Brady Tkachuk",88,"F"],["Tim Stützle",89,"F"],["Thomas Chabot",85,"F"],["Claude Giroux",85,"F"],["David Perron",83,"F"],["Lars Eller",79,"F"],["Nick Cousins",78,"F"],["Nick Jensen",81,"F"],["Leevi Merilainen",82,"G"],["Michael Amadio",83,"F"]]},
+"Philadelphia Flyers":{c1:"#F74902",c2:"#000000",t:"#fff",p:[["Travis Konecny",86,"F"],["Owen Tippett",84,"F"],["Sean Couturier",83,"F"],["Noah Cates",82,"F"],["Philip Tomasino",82,"F"],["Samuel Ersson",83,"G"],["Matvei Michkov",86,"F"],["Trevor Zegras",89,"F"],["Bobby Brink",85,"F"],["Rasmus Ristolainen",83,"F"]]},
+"Pittsburgh Penguins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["Sidney Crosby",92,"F"],["Evgeni Malkin",86,"F"],["Kris Letang",85,"F"],["Erik Karlsson",89,"F"],["Noel Acciari",81,"F"],["Justin Brazeau",80,"F"],["Ville Koivunen",79,"F"],["Ben Kindel",81,"F"],["Arturs Silovs",83,"G"],["Rutger McGroarty",84,"F"]]},
+"San Jose Sharks":{c1:"#006D75",c2:"#EA7200",t:"#fff",p:[["Macklin Celebrini",88,"F"],["Jeff Skinner",81,"F"],["John Klingberg",83,"F"],["William Eklund",81,"F"],["Ryan Reaves",75,"F"],["Collin Graf",80,"F"],["Shakir Mukhamadullin",78,"F"],["Yaroslav Askarov",85,"G"],["Igor Chernyshov",82,"F"],["Dmitry Orlov",83,"F"]]},
+"Seattle Kraken":{c1:"#001628",c2:"#99D9D9",t:"#fff",p:[["Matty Beniers",85,"F"],["Jared McCann",84,"F"],["Vince Dunn",85,"F"],["Jordan Eberle",83,"F"],["Kaapo Kakko",85,"F"],["Berkly Catton",79,"F"],["Frederick Gaudreau",82,"F"],["Brandon Montour",86,"F"],["Ryker Evans",83,"F"],["Shane Wright",82,"F"]]},
+"St. Louis Blues":{c1:"#002F87",c2:"#FCB514",t:"#fff",p:[["Robert Thomas",88,"F"],["Jordan Kyrou",86,"F"],["Colton Parayko",85,"F"],["Jonatan Berggren",83,"F"],["Pius Suter",83,"F"],["Nick Bjugstad",80,"F"],["Mathieu Joseph",81,"F"],["Logan Mailloux",79,"F"],["Jimmy Snuggerud",78,"F"],["Cam Fowler",83,"F"]]},
+"Tampa Bay Lightning":{c1:"#002868",c2:"#FFFFFF",t:"#000",p:[["Nikita Kucherov",94,"F"],["Brayden Point",90,"F"],["Victor Hedman",88,"F"],["Andre Vasilevskiy",93,"G"],["Pontus Holmberg",80,"F"],["Darren Raddysh",80,"F"],["Conor Geekie",81,"F"],["Max Crozier",78,"F"],["Charle-Edouard D'Astous",77,"F"],["Anthony Cirelli",86,"F"]]},
+"Toronto Maple Leafs":{c1:"#00205B",c2:"#FFFFFF",t:"#000",p:[["Auston Matthews",94,"F"],["William Nylander",88,"F"],["Max Domi",84,"F"],["Matthew Knies",84,"F"],["John Tavares",91,"F"],["Bobby McMann",79,"F"],["Matias Maccelli",80,"F"],["Morgan Rielly",88,"F"],["Steven Lorentz",79,"F"],["Scott Laughton",82,"F"]]},
+"Utah Mammoth":{c1:"#7EC8E3",c2:"#000000",t:"#fff",p:[["Clayton Keller",88,"F"],["Barrett Hayton",83,"F"],["Nick Schmaltz",85,"F"],["Logan Cooley",82,"F"],["Lawson Crouse",79,"F"],["Michael Carcone",79,"F"],["Brandon Tanev",80,"F"],["Sean Durzi",81,"F"],["Karel Vejmelka",82,"G"],["J.J. Peterka",85,"F"]]},
+"Vancouver Canucks":{c1:"#00205B",c2:"#00843D",t:"#fff",p:[["Elias Pettersson",90,"F"],["Brock Boeser",87,"F"],["Filip Hronek",86,"F"],["Jake DeBrusk",83,"F"],["Jonathan Lekkerimäki",80,"F"],["Marco Rossi",82,"F"],["Teddy Blueger",78,"F"],["Derek Forbort",77,"F"],["Kevin Lankinen",82,"G"],["Kiefer Sherwood",85,"F"]]},
+"Vegas Golden Knights":{c1:"#B4975A",c2:"#333F42",t:"#000",p:[["Jack Eichel",90,"F"],["Mark Stone",88,"F"],["Tomas Hertl",87,"F"],["Ivan Barbashev",86,"F"],["Pavel Dorofeyev",85,"F"],["Brayden McNabb",84,"F"],["Keegan Kolesar",80,"F"],["Ben Hutton",78,"F"],["Akira Schmid",82,"G"],["Mitch Marner",88,"F"]]},
+"Washington Capitals":{c1:"#041E42",c2:"#C8102E",t:"#fff",p:[["Alex Ovechkin",90,"F"],["Dylan Strome",84,"F"],["John Carlson",85,"F"],["Pierre-Luc Dubois",87,"F"],["Justin Sourdif",81,"F"],["Dylan McIlrath",76,"F"],["Hendrix Lapierre",78,"F"],["Nic Dowd",82,"F"],["Charlie Lindgren",83,"G"],["Tom Wilson",86,"F"]]},
+"Winnipeg Jets":{c1:"#041E42",c2:"#AC162C",t:"#fff",p:[["Kyle Connor",88,"F"],["Mark Scheifele",87,"F"],["Connor Hellebuyck",90,"G"],["Nikita Chibrikov",82,"F"],["Gustav Nyquist",82,"F"],["Tanner Pearson",80,"F"],["Vladislav Namestnikov",82,"F"],["Neal Pionk",85,"F"],["Jonathan Toews",82,"F"],["Luke Schenn",80,"F"]]}
 };
 
 /* ================= AHL TEAMS ================= */
@@ -102,6 +102,7 @@ const ahlTeams = {
     players: [
       { name: "Tim Washe", ovr: 76, position: "F" },
       { name: "Tristan Luneau", ovr: 75, position: "F" },
+      { name: "Nico Myatovic", ovr: 64, position: "F" },
       { name: "Calle Clang", ovr: 74, position: "G" }
     ]
   },
@@ -112,6 +113,7 @@ const ahlTeams = {
     players: [
       { name: "Kevin Rooney", ovr: 77, position: "F" },
       { name: "Maveric Lamoureux", ovr: 75, position: "F" },
+      { name: "Andrew Agozzino", ovr: 68, position: "F" },
       { name: "Matthew Villalta", ovr: 74, position: "G" }
     ]
   },
@@ -122,6 +124,7 @@ const ahlTeams = {
     players: [
       { name: "Georgii Merkulov", ovr: 77, position: "F" },
       { name: "Michael Callahan", ovr: 76, position: "F" },
+      { name: "Matěj Blümel", ovr: 79, position: "F" },
       { name: "Michael DiPietro", ovr: 75, position: "G" }
     ]
   },
@@ -132,6 +135,7 @@ const ahlTeams = {
     players: [
       { name: "Isak Rosén", ovr: 76, position: "F" },
       { name: "Jack Rathbone", ovr: 75, position: "F" },
+      { name: "Zac Jones", ovr: 80, position: "F" },
       { name: "Scott Ratzlaff", ovr: 74, position: "G" }
     ]
   },
@@ -142,6 +146,7 @@ const ahlTeams = {
     players: [
       { name: "Dryden Hunt", ovr: 77, position: "F" },
       { name: "Nick Cicek", ovr: 76, position: "F" },
+      { name: "Yan Kuznetsov", ovr: 79, position: "F" },
       { name: "Ivan Prosvetov", ovr: 75, position: "G" }
     ]
   },
@@ -152,6 +157,7 @@ const ahlTeams = {
     players: [
       { name: "Givani Smith", ovr: 77, position: "F" },
       { name: "Ronan Seeley", ovr: 76, position: "F" },
+      { name: "Bradley Nadeau", ovr: 82, position: "F" },
       { name: "Cayden Primeau", ovr: 78, position: "G" }
     ]
   },
@@ -162,6 +168,7 @@ const ahlTeams = {
     players: [
       { name: "Brett Seney", ovr: 76, position: "F" },
       { name: "Sam Rinzel", ovr: 74, position: "F" },
+      { name: "Nick Lardis", ovr: 77, position: "F" },
       { name: "Laurent Brossoit", ovr: 82, position: "G" }
     ]
   },
@@ -172,6 +179,7 @@ const ahlTeams = {
     players: [
       { name: "Jayson Megna", ovr: 75, position: "F" },
       { name: "Hank Kempf", ovr: 73, position: "F" },
+      { name: "T.J. Tynan", ovr: 74, position: "F" },
       { name: "Trent Miner", ovr: 74, position: "G" }
     ]
   },
@@ -182,6 +190,7 @@ const ahlTeams = {
     players: [
       { name: "Jordan Dumais", ovr: 76, position: "F" },
       { name: "Will Butcher", ovr: 75, position: "F" },
+      { name: "Luca Del Bel Belluz", ovr: 77, position: "F" },
       { name: "Zach Sawchenko", ovr: 74, position: "G" }
     ]
   },
@@ -192,6 +201,7 @@ const ahlTeams = {
     players: [
       { name: "Nathan Bastian", ovr: 77, position: "F" },
       { name: "Tristan Bertucci", ovr: 74, position: "F" },
+      { name: "Kole Lind", ovr: 77, position: "F" },
       { name: "Ben Kraws", ovr: 76, position: "G" }
     ]
   },
@@ -202,6 +212,7 @@ const ahlTeams = {
     players: [
       { name: "Dominik Shine", ovr: 77, position: "F" },
       { name: "Erik Gustafsson", ovr: 83, position: "F" },
+      { name: "Austin Watson", ovr: 68, position: "F" },
       { name: "Sebastian Cossa", ovr: 80, position: "G" }
     ]
   },
@@ -212,6 +223,7 @@ const ahlTeams = {
     players: [
       { name: "Max Jones", ovr: 78, position: "F" },
       { name: "Cam Dineen", ovr: 76, position: "F" },
+      { name: "Quinn Hutson", ovr: 79, position: "F" },
       { name: "Matt Tomkins", ovr: 77, position: "G" }
     ]
   },
@@ -222,6 +234,7 @@ const ahlTeams = {
     players: [
       { name: "MacKenzie Entwistle", ovr: 77, position: "F" },
       { name: "Trevor Carrick", ovr: 76, position: "F" },
+      { name: "Nolan Foote", ovr: 78, position: "F" },
       { name: "Louis Domingue", ovr: 78, position: "G" }
     ]
   },
@@ -232,6 +245,7 @@ const ahlTeams = {
     players: [
       { name: "Nikita Alexandrov", ovr: 78, position: "F" },
       { name: "Kyle Burroughs", ovr: 77, position: "F" },
+      { name: "Cole Guttman", ovr: 76, position: "F" },
       { name: "Pheonix Copley", ovr: 80, position: "G" }
     ]
   },
@@ -242,6 +256,7 @@ const ahlTeams = {
     players: [
       { name: "Nicolas Aubé-Kubel", ovr: 80, position: "F" },
       { name: "Ben Gleason", ovr: 76, position: "F" },
+      { name: "Boris Katchouk", ovr: 76, position: "F" },
       { name: "Cal Petersen", ovr: 75, position: "G" }
     ]
   },
@@ -252,6 +267,7 @@ const ahlTeams = {
     players: [
       { name: "Laurent Dauphin", ovr: 78, position: "F" },
       { name: "Nate Clurman", ovr: 76, position: "F" },
+      { name: "Florian Xhekaj", ovr: 74, position: "F" },
       { name: "Kaapo Kähkönen", ovr: 81, position: "G" }
     ]
   },
@@ -262,6 +278,7 @@ const ahlTeams = {
     players: [
       { name: "Jake Lucchini", ovr: 77, position: "F" },
       { name: "Tanner Molendyk", ovr: 76, position: "F" },
+      { name: "Zachary L'Heureux", ovr: 78, position: "F" },
       { name: "Magnus Chrona", ovr: 78, position: "G" }
     ]
   },
@@ -272,6 +289,7 @@ const ahlTeams = {
     players: [
       { name: "Angus Crookshank", ovr: 77, position: "F" },
       { name: "Calen Addison", ovr: 76, position: "F" },
+      { name: "Mike Hardman", ovr: 72, position: "F" },
       { name: "Nico Daws", ovr: 81, position: "G" }
     ]
   },
@@ -282,6 +300,7 @@ const ahlTeams = {
     players: [
       { name: "Matthew Highmore", ovr: 77, position: "F" },
       { name: "Marshall Warren", ovr: 74, position: "F" },
+      { name: "Liam Foudy", ovr: 76, position: "F" },
       { name: "Marcus Högberg", ovr: 79, position: "G" }
     ]
   },
@@ -292,6 +311,7 @@ const ahlTeams = {
     players: [
       { name: "Justin Dowling", ovr: 76, position: "F" },
       { name: "Connor Mackey", ovr: 80, position: "F" },
+      { name: "Jaroslav Chmelar", ovr: 73, position: "F" },
       { name: "Spencer Martin", ovr: 81, position: "G" }
     ]
   },
@@ -302,6 +322,7 @@ const ahlTeams = {
     players: [
       { name: "Arthur Kaliyev", ovr: 81, position: "F" },
       { name: "Carter Yakemchuk", ovr: 74, position: "F" },
+      { name: "Garrett Pilon", ovr: 75, position: "F" },
       { name: "Mads Søgaard", ovr: 83, position: "G" }
     ]
   },
@@ -312,6 +333,7 @@ const ahlTeams = {
     players: [
       { name: "Zayde Wisdom", ovr: 78, position: "F" },
       { name: "Hunter McDonald", ovr: 76, position: "F" },
+      { name: "Denver Barkey", ovr: 76, position: "F" },
       { name: "Aleksei Kolosov", ovr: 80, position: "G" }
     ]
   },
@@ -322,6 +344,7 @@ const ahlTeams = {
     players: [
       { name: "Valtteri Puustinen", ovr: 80, position: "F" },
       { name: "Scooter Brickey", ovr: 74, position: "F" },
+      { name: "Bokondji Imama", ovr: 75, position: "F" },
       { name: "Joel Blomqvist", ovr: 82, position: "G" }
     ]
   },
@@ -332,6 +355,7 @@ const ahlTeams = {
     players: [
       { name: "Colin White", ovr: 78, position: "F" },
       { name: "Jack Thompson", ovr: 76, position: "F" },
+      { name: "Pavol Regenda", ovr: 74, position: "F" },
       { name: "Jakub Skarek", ovr: 78, position: "G" }
     ]
   },
@@ -342,6 +366,7 @@ const ahlTeams = {
     players: [
       { name: "John Hayden", ovr: 75, position: "F" },
       { name: "Ville Ottavainen", ovr: 77, position: "F" },
+      { name: "Max McCormick", ovr: 70, position: "F" },
       { name: "Nikke Kokko", ovr: 81, position: "G" }
     ]
   },
@@ -352,6 +377,7 @@ const ahlTeams = {
     players: [
       { name: "Matt Luff", ovr: 78, position: "F" },
       { name: "Calle Rosén", ovr: 76, position: "F" },
+      { name: "Hunter Skinner", ovr: 74, position: "F" },
       { name: "Georgi Romanov", ovr: 75, position: "G" }
     ]
   },
@@ -362,6 +388,7 @@ const ahlTeams = {
     players: [
       { name: "Jakob Pelletier", ovr: 78, position: "F" },
       { name: "Steven Santini", ovr: 76, position: "F" },
+      { name: "Mitchell Chaffee", ovr: 76, position: "F" },
       { name: "Brandon Halverson", ovr: 75, position: "G" }
     ]
   },
@@ -372,6 +399,7 @@ const ahlTeams = {
     players: [
       { name: "Vinni Lettieri", ovr: 78, position: "F" },
       { name: "Henry Thrun", ovr: 76, position: "F" },
+      { name: "Cédric Paré", ovr: 72, position: "F" },
       { name: "Vyacheslav Peksa", ovr: 75, position: "G" }
     ]
   },
@@ -382,6 +410,7 @@ const ahlTeams = {
     players: [
       { name: "Lukas Reichel", ovr: 79, position: "F" },
       { name: "Victor Mancini", ovr: 79, position: "F" },
+      { name: "Ben Berard", ovr: 73, position: "F" },
       { name: "Jiří Patera", ovr: 78, position: "G" }
     ]
   },
@@ -392,6 +421,7 @@ const ahlTeams = {
     players: [
       { name: "Raphael Lavoie", ovr: 77, position: "F" },
       { name: "Lukas Cormier", ovr: 76, position: "F" },
+      { name: "Jonas Røndbjerg", ovr: 76, position: "F" },
       { name: "Carl Lindbom", ovr: 75, position: "G" }
     ]
   },
@@ -402,6 +432,7 @@ const ahlTeams = {
     players: [
       { name: "Spencer Smallman", ovr: 78, position: "F" },
       { name: "Aaron Ness", ovr: 76, position: "F" },
+      { name: "Brett Leason", ovr: 80, position: "F" },
       { name: "Clay Stevenson", ovr: 75, position: "G" }
     ]
   },
@@ -412,6 +443,7 @@ const ahlTeams = {
     players: [
       { name: "Mason Shaw", ovr: 77, position: "F" },
       { name: "Isaak Phillips", ovr: 76, position: "F" },
+      { name: "Brayden Yager", ovr: 77, position: "F" },
       { name: "Thomas Milic", ovr: 75, position: "G" }
     ]
   }
@@ -419,12 +451,20 @@ const ahlTeams = {
 
 /* ================= FREE AGENTS ================= */
 let freeAgents = [
-  {name:"Evgeny Kuznetsov",ovr:82},
-  {name:"Mike Hoffman",ovr:81},
-  {name:"Phil Kessel",ovr:80},
-  {name:"Jani Hakanpaa",ovr:80},
-  {name:"Robert Bortuzzo",ovr:80},
-  {name:"Grigori Denisenko",ovr:76}
+  {name:"Jani Hakanpää",ovr:81},
+  {name:"Robert Bortuzzo",ovr:81},
+  {name:"T.J. Brodie",ovr:80},
+  {name:"Jon Merrill",ovr:80},
+  {name:"Marc-Édouard Vlasic",ovr:80},
+  {name:"Ryan Suter",ovr:80},
+  {name:"Matt Nieto",ovr:80},
+  {name:"Trevor Lewis",ovr:79},
+  {name:"Brock McGinn",ovr:79},
+  {name:"Andreas Athanasiou",ovr:78},
+  {name:"David Tomášek",ovr:78},
+  {name:"Grigori Denisenko",ovr:77},
+  {name:"Christián Jaroš",ovr:76},
+  {name:"Travis Dermott",ovr:76}
 ];
 
 /* ================= ARENAS ================= */
@@ -465,7 +505,7 @@ const realCoaches = {
 "Dallas Stars": { name: "Glen Gulutzan", ovr: 87 },
 "Detroit Red Wings": { name: "Todd McLellan", ovr: 86 },
 "Edmonton Oilers": { name: "Kris Knoblauch", ovr: 83 },
-"Florida Panthers": { name: "Paul Maurice", ovr: 81 },
+"Florida Panthers": { name: "Paul Maurice", ovr: 88 },
 "Los Angeles Kings": { name: "Jim Hiller", ovr: 85 },
 "Minnesota Wild": { name: "John Hynes", ovr: 83 },
 "Montreal Canadiens": { name: "Martin St. Louis", ovr: 87 },
@@ -520,13 +560,46 @@ Object.keys(teams).forEach(team => {
 });
 
 function getPlayerTradeValue(player) {
-  let base = player.ovr * 1.2;
+  let value = player.ovr * 1.4;
 
-  if (player.ovr >= 90) base += 25;
-  else if (player.ovr >= 85) base += 15;
-  else if (player.ovr >= 80) base += 5;
+  if (player.ovr >= 92) value *= 1.6;
+  else if (player.ovr >= 88) value *= 1.35;
+  else if (player.ovr >= 82) value *= 1.15;
 
-  return Math.round(base);
+  return Math.round(value);
+}
+
+function tradeIsAllowed(targetPlayer, offeredPlayers, offeredPicks) {
+
+  // === ELITE PLAYER LOCK (90+) ===
+  if (targetPlayer.ovr >= 90) {
+    const hasElite = offeredPlayers.some(p => p.ovr >= 87);
+    if (!hasElite) return false;
+  }
+
+  // === HIGH-END PLAYER LOCK (82–89) ===
+  if (targetPlayer.ovr >= 82 && targetPlayer.ovr <= 89) {
+    const hasGoodPlayer = offeredPlayers.some(p => p.ovr >= 80);
+    const hasHighPick = offeredPicks.some(p => p.round <= 2);
+
+    if (!hasGoodPlayer && !hasHighPick) return false;
+  }
+
+  return true;
+}
+
+function getTradeValue(players, picks) {
+  let value = 0;
+
+  players.forEach(p => {
+    value += getPlayerTradeValue(p);
+  });
+
+  picks.forEach(p => {
+    value += p.value;
+  });
+
+  return Math.round(value);
 }
 
 /* ================= AHL UI ================= */
@@ -647,6 +720,18 @@ function buyoutPlayer(){
 }
 
 /* ================= TRADES ================= */
+function canTradePlayers(givePlayer, receivePlayer) {
+
+  // ABSOLUTE BLOCKS
+  if (receivePlayer.ovr >= 90 && givePlayer.ovr < 87) return false;
+
+  if (receivePlayer.ovr >= 85 && givePlayer.ovr < 82) return false;
+
+  if (receivePlayer.ovr >= 82 && givePlayer.ovr < 78) return false;
+
+  return true;
+}
+
 function openTrades() {
   let html = "<b>Select a team to trade with:</b><br>";
   Object.keys(teams).filter(t => t !== currentTeam).forEach(team => {
@@ -701,40 +786,67 @@ function selectTargetPlayer(index) {
   showTradeOfferScreen();
 }
 function finalizeTrade() {
-  let offeredValue = 0;
 
-  offeredPlayers.forEach(p => offeredValue += getPlayerTradeValue(p));
-  offeredPicks.forEach(p => offeredValue += p.value);
+  // Convert target player into object form
+  const target = {
+    name: targetPlayer[0],
+    ovr: targetPlayer[1],
+    position: targetPlayer[2] || "F"
+  };
 
-  let targetValue = getPlayerTradeValue({
-    ovr: targetPlayer[1]
-  });
-
-  // AI demands premium
-  targetValue *= 1.15;
-
-  if (offeredValue < targetValue) {
-    alert("Trade rejected: offer not good enough.");
+  // HARD REALISM GATE
+  if (!tradeIsAllowed(target, offeredPlayers, offeredPicks)) {
+    alert("Trade rejected ❌");
     return;
   }
 
-  // EXECUTE TRADE
+  const offeredValue = getTradeValue(offeredPlayers, offeredPicks);
+  const targetValue = Math.round(getPlayerTradeValue(target) * 1.2);
+
+  if (offeredValue < targetValue) {
+    alert("Trade rejected: Offer not strong enough.");
+    return;
+  }
+
+  // === EXECUTE TRADE ===
+
+  // Remove offered players from your roster
   offeredPlayers.forEach(p => {
-    roster = roster.filter(r => r !== p);
-    teams[tradePartner].p.push([p.name, p.ovr]);
+    const idx = roster.findIndex(r => r.name === p.name);
+    if (idx !== -1) roster.splice(idx, 1);
   });
 
+  // Remove target from AI team
+  const aiRoster = teams[tradePartner].p;
+  const aiIndex = aiRoster.findIndex(p => p[0] === target.name);
+  if (aiIndex !== -1) aiRoster.splice(aiIndex, 1);
+
+  // Add target to your roster
+  roster.push(target);
+
+  // Add your players to AI roster
+  offeredPlayers.forEach(p => {
+    aiRoster.push([p.name, p.ovr, p.position]);
+  });
+
+  // Remove traded picks
   offeredPicks.forEach(p => {
-    teamPicks[currentTeam] = teamPicks[currentTeam].filter(x => x !== p);
-    teamPicks[tradePartner].push(p);
+    const idx = teamPicks[currentTeam].findIndex(tp => tp.round === p.round);
+    if (idx !== -1) teamPicks[currentTeam].splice(idx, 1);
   });
 
-  roster.push({ name: targetPlayer[0], ovr: targetPlayer[1], position: "F" });
-  teams[tradePartner].p = teams[tradePartner].p.filter(p => p !== targetPlayer);
+  // RESET STATE
+  offeredPlayers = [];
+  offeredPicks = [];
+  targetPlayer = null;
+  tradePartner = null;
 
   document.getElementById("output").innerHTML =
-    `<b>Trade completed!</b><br>You acquired ${targetPlayer[0]}`;
+    "<b>Trade completed successfully✅.</b>";
+
 }
+
+// === TRADE GOES THROUGH HERE ===
 
 function viewDraftPicks() {
   if (!teamPicks[currentTeam] || teamPicks[currentTeam].length === 0) {
@@ -813,45 +925,89 @@ function simSeason() {
   if (teamCoaches[currentTeam]) teamOVR += Math.round(teamCoaches[currentTeam].ovr * 0.03);
 
   // --- 3. Generate season record based on overall ---
-  // Higher overall => more wins, fewer losses, realistic OTL
-  let winFactor = (teamOVR - 75) / 10; // 75 OVR baseline
-  let wins = Math.floor(35 + Math.random() * 10 + winFactor * 10); // ~35-55+ wins
-  if (wins > 82) wins = 82;
 
-  let otl = Math.floor(Math.random() * 8) + 5; // 5-12 OTL
-  let losses = 82 - wins - otl;
-  if (losses < 0) { losses = 0; otl = 82 - wins; }
+let baseWins = Math.round((teamOVR - 70) * 2.2);
+
+baseWins = Math.min(Math.max(baseWins, 18), 58);
+
+let variance = Math.floor(Math.random() * 7) - 3; // -3 to +3
+let wins = baseWins + variance;
+
+wins = Math.min(Math.max(wins, 15), 60);
+
+let otl = Math.floor(5 + Math.random() * 6 + (teamOVR - 82) * 0.2);
+otl = Math.min(Math.max(otl, 3), 12);
+
+let losses = 82 - wins - otl;
+
 
   // --- 4. Playoffs simulation ---
-  let playoffResult = "";
+let playoffResult = "";
+let madePlayoffs = false;
 
-  // Adjust playoff chance based on overall
-  let playoffChance = 0.5 + (teamOVR - 83) * 0.05; // 83 OVR baseline 50%
-  playoffChance = Math.min(Math.max(playoffChance, 0), 0.95);
+// ===== ABSOLUTE RECORD RULE =====
+// Losing record = no playoffs
+if (wins <= 40) {
+  madePlayoffs = false;
+}
 
-  let madePlayoffs = Math.random() < playoffChance;
+// ===== ELITE TEAMS =====
+else if (teamOVR >= 86) {
+  madePlayoffs = true;
+}
 
-  if (madePlayoffs) {
-    let rounds = ["Round 1", "Round 2", "Conference Finals", "Stanley Cup Finals"];
-    let roundChance = 0.3 + (teamOVR - 80) * 0.015 + (teamCoaches[currentTeam]?.ovr || 0) * 0.002;
-    let survived = true;
+// ===== VERY BAD TEAMS =====
+else if (teamOVR <= 81) {
+  madePlayoffs = Math.random() < 0.1; // miracle run
+}
 
-    for (let i = 0; i < rounds.length; i++) {
-      if (Math.random() > roundChance) {
-        playoffResult = `Eliminated in ${rounds[i]}`;
-        survived = false;
-        break;
-      }
-      roundChance *= 0.9; // Next round slightly harder
+// ===== SOLID RECORD =====
+else if (wins >= 42) {
+  madePlayoffs = true;
+}
+
+// ===== BUBBLE =====
+else {
+  // wins = 41 only, OVR 82–85
+  let bubbleChance = 0.35 + (teamOVR - 82) * 0.15;
+  bubbleChance = Math.min(Math.max(bubbleChance, 0.05), 0.75);
+  madePlayoffs = Math.random() < bubbleChance;
+}
+
+// ===== PLAYOFF ROUNDS =====
+if (!madePlayoffs) {
+  playoffResult = "Missed Playoffs❌";
+} else {
+  let rounds = [
+    "Round 1",
+    "Round 2",
+    "Conference Finals",
+    "Stanley Cup Finals"
+  ];
+
+  let roundChance =
+    0.28 +
+    (teamOVR - 86) * 0.025 +
+    (teamCoaches[currentTeam]?.ovr || 0) * 0.002;
+
+  roundChance = Math.min(Math.max(roundChance, 0.15), 0.6);
+
+  let eliminated = false;
+
+  for (let i = 0; i < rounds.length; i++) {
+    if (Math.random() > roundChance) {
+      playoffResult = `Eliminated in ${rounds[i]}`;
+      eliminated = true;
+      break;
     }
-
-    if (survived) {
-      playoffResult = "Won Stanley Cup!🏆";
-      cups++;
-    }
-  } else {
-    playoffResult = "Missed Playoffs";
+    roundChance *= 0.85; // harder each round
   }
+
+  if (!eliminated) {
+    playoffResult = "🏆 Won the Stanley Cup!";
+    cups++;
+  }
+}
 
   // --- 5. Output ---
   document.getElementById("cupsWon").textContent = `Stanley Cups Won: ${cups}`;
@@ -950,5 +1106,4 @@ function viewDashboard(){
 
 </script>
 </body>
-
 </html>
