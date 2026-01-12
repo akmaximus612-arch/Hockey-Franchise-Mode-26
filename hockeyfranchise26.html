@@ -60,38 +60,38 @@ select { padding:8px; border-radius:6px; font-family:'Barlow',sans-serif; }
 <script>
 /* ================= TEAM DATA ================= */
 const teams = {
-"Anaheim Ducks":{c1:"#F47A38",c2:"#B09862",t:"#000",p:[["Mason McTavish",88,"F"],["Leo Carlsson",85,"F"],["Ville Husso",84,"G"],["Sam Colangelo",80,"F"],["Mikael Granlund",82,"F"],["Chris Kreider",84,"F"],["Pavel Mintyukov",78,"F"],["Alex Killorn",81,"F"],["Troy Terry",83,"F"],["Ross Johnston",77,"F"]]},
-"Boston Bruins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["David Pastrnak",91,"F"],["Charlie McAvoy",89,"F"],["Elias Lindholm",87,"F"],["Viktor Arvidsson",84,"F"],["Mason Lohrei",76,"F"],["Joonas Korpisalo",81,"G"],["Tanner Jeannot",78,"F"],["Jordan Harris",77,"D"],["Andrew Peeke",75,"F"],["Marat Khusnutdinov",80,"F"]]},
-"Buffalo Sabres":{c1:"#002654",c2:"#FDBB2F",t:"#fff",p:[["Tage Thompson",87,"F"],["Rasmus Dahlin",89,"F"],["Alex Tuch",86,"F"],["Zach Benson",80,"F"],["Peyton Krebs",77,"F"],["Jiri Kulich",78,"F"],["Josh Norris",81,"F"],["Ukko-Pekka Luukkonen",84,"G"],["Tyson Kozak",76,"F"],["Jordan Greenway",80,"F"]]},
-"Calgary Flames":{c1:"#C8102E",c2:"#F1BE48",t:"#fff",p:[["Nazem Kadri",85,"F"],["Yegor Sharangovich",84,"F"],["Mackenzie Weegar",87,"F"],["Rasmus Andersson",83,"F"],["Matvei Gridin",77,"F"],["Martin Pospisil",78,"F"],["Blake Coleman",81,"F"],["Joel Farabee",82,"F"],["Dustin Wolf",83,"G"],["Ryan Lomberg",79,"F"]]},
-"Carolina Hurricanes":{c1:"#CC0000",c2:"#000000",t:"#fff",p:[["Sebastian Aho",89,"F"],["Andrei Svechnikov",87,"F"],["Jaccob Slavin",88,"F"],["Nikolaj Ehlers",87,"F"],["Seth Jarvis",82,"F"],["Pyotr Kochetkov",81,"G"],["Jesperi Kotkaniemi",80,"F"],["Taylor Hall",79,"F"],["Alexander Nikishin",84,"F"],["K'Andre Miller",85,"F"]]},
-"Chicago Blackhawks":{c1:"#CF0A2C",c2:"#000000",t:"#fff",p:[["Connor Bedard",88,"F"],["Spencer Knight",85,"G"],["Tyler Bertuzzi",85,"F"],["Andre Burakovsky",84,"F"],["Sam Lafferty",76,"F"],["Teuvo Teravainen",83,"F"],["Ilya Mikheyev",81,"F"],["Colton Dach",78,"F"],["Frank Nazar",81,"F"],["Nick Foligno",81,"F"]]},
-"Colorado Avalanche":{c1:"#6F263D",c2:"#236192",t:"#fff",p:[["Nathan MacKinnon",94,"F"],["Cale Makar",93,"F"],["Valeri Nichushkin",87,"F"],["Ross Colton",82,"F"],["Samuel Girard",83,"F"],["Devon Toews",84,"F"],["Mackenzie Blackwood",81,"G"],["Artturi Lehkonen",85,"F"],["Brent Burns",83,"F"],["Martin Necas",89,"F"]]},
-"Columbus Blue Jackets":{c1:"#002654",c2:"#CE1126",t:"#fff",p:[["Adam Fantilli",87,"F"],["Zach Werenski",88,"F"],["Boone Jenner",83,"F"],["Charlie Coyle",82,"F"],["Isac Lundestrom",78,"F"],["Elvis Merzlikins",83,"G"],["Dante Fabbro",81,"F"],["Cole Sillinger",80,"F"],["Mason Marchment",83,"F"],["Egor Zamula",81,"F"]]},
-"Dallas Stars":{c1:"#006847",c2:"#8F8F8C",t:"#fff",p:[["Jason Robertson",90,"F"],["Roope Hintz",88,"F"],["Miro Heiskanen",91,"F"],["Matt Duchene",84,"F"],["Jake Oettinger",90,"G"],["Thomas Harley",78,"F"],["Radek Faksa",79,"F"],["Esa Lindell",81,"F"],["Colin Blackwell",78,"F"],["Jamie Benn",82,"F"]]},
-"Detroit Red Wings":{c1:"#CE1126",c2:"#FFFFFF",t:"#000",p:[["Dylan Larkin",87,"F"],["Lucas Raymond",86,"F"],["Alex DeBrincat",88,"F"],["Patrick Kane",87,"F"],["Simon Edvinsson",80,"F"],["Cam Talbot",81,"G"],["J.T. Compher",78,"F"],["Ben Chiarot",77,"F"],["Moritz Seider",89,"F"],["James van Riemsdyk",81,"F"]]},
-"Edmonton Oilers":{c1:"#041E42",c2:"#FF4C00",t:"#fff",p:[["Connor McDavid",97,"F"],["Leon Draisaitl",94,"F"],["Evan Bouchard",89,"F"],["Ryan Nugent-Hopkins",85,"F"],["Zach Hyman",87,"F"],["Tristan Jarry",85,"G"],["Darnell Nurse",88,"D"],["Andrew Mangiapane",82,"F"],["Trent Frederic",80,"F"],["Jack Roslovic",82,"F"]]},
-"Florida Panthers":{c1:"#C8102E",c2:"#041E42",t:"#fff",p:[["Brad Marchand",90,"F"],["Sam Reinhart",88,"F"],["Anton Lundell",86,"F"],["Aaron Ekblad",86,"F"],["Gustav Forsling",84,"F"],["Sergei Bobrovsky",84,"G"],["Luke Kunin",80,"F"],["Seth Jones",87,"F"],["Matthew Tkachuk",91,"F"],["Carter Verhaeghe",87,"F"]]},
-"Los Angeles Kings":{c1:"#111111",c2:"#A2AAAD",t:"#fff",p:[["Anze Kopitar",86,"F"],["Drew Doughty",84,"F"],["Adrian Kempe",85,"F"],["Corey Perry",84,"F"],["Joel Armia",78,"F"],["Trevor Moore",80,"F"],["Samuel Helenius",77,"F"],["Alex Turcotte",78,"F"],["Jeff Malott",78,"F"],["Quinton Byfield",86,"F"]]},
-"Minnesota Wild":{c1:"#154734",c2:"#A6192E",t:"#fff",p:[["Quinn Hughes",92,"F"],["Kirill Kaprizov",90,"F"],["Matt Boldy",87,"F"],["Filip Gustavsson",82,"G"],["Marcus Johansson",80,"F"],["Vinnie Hinostroza",79,"F"],["Yakov Trenin",78,"F"],["Nico Sturm",77,"F"],["Ben Jones",76,"F"],["Mats Zuccarello",87,"F"]]},
-"Montreal Canadiens":{c1:"#AF1E2D",c2:"#192168",t:"#fff",p:[["Nick Suzuki",88,"F"],["Juraj Slafkovsky",84,"F"],["Cole Caufield",86,"F"],["Josh Anderson",85,"F"],["Owen Beck",75,"F"],["Sammy Blais",78,"F"],["Joe Veleno",80,"F"],["Jakub Dobeš",83,"G"],["Alexandre Carrier",79,"F"],["Ivan Demidov",86,"F"]]},
-"Nashville Predators":{c1:"#FFB81C",c2:"#041E42",t:"#fff",p:[["Filip Forsberg",86,"F"],["Roman Josi",89,"F"],["Juuse Saros",83,"G"],["Steven Stamkos",89,"F"],["Ryan O'Reilly",87,"F"],["Tyson Jost",82,"F"],["Adam Wilsby",78,"F"],["Kevin Gravel",76,"F"], ["Jordan Oesterle",77,"F"],["Michael Bunting",83,"F"]]},
-"New Jersey Devils":{c1:"#CE1126",c2:"#000000",t:"#fff",p:[["Jack Hughes",91,"F"],["Nico Hischier",87,"F"],["Dougie Hamilton",86,"F"],["Timo Meier",87,"F"],["Evgenii Dadonov",81,"F"],["Connor Brown",80,"F"],["Arseni Gritsyuk",78,"F"],["Seamus Casey",77,"F"],["Jacob Markstrom",91,"G"],["Luke Hughes",84,"F"]]},
-"NY Islanders":{c1:"#00539B",c2:"#F47D30",t:"#fff",p:[["Mathew Barzal",88,"F"],["Bo Horvat",87,"F"],["Ilya Sorokin",90,"G"],["Anders Lee",85,"F"],["Matthew Schaefer",83,"F"],["Jean-Gabriel Pageau",81,"F"],["Simon Holmstrom",78,"F"],["Tony DeAngelo",78,"F"],["Kyle Palmieri",82,"F"],["Emil Heineman",84,"F"]]},
-"NY Rangers":{c1:"#0038A8",c2:"#CE1126",t:"#fff",p:[["Artemi Panarin",91,"F"],["Mika Zibanejad",88,"F"],["Igor Shesterkin",92,"G"],["Adam Fox",92,"F"],["Alexis Lafreniere",80,"F"],["Braden Schneider",77,"F"],["Vincent Trocheck",86,"F"],["J.T. Miller",89,"F"],["Conor Sheary",77,"F"],["Matt Rempe",78,"F"]]},
-"Ottawa Senators":{c1:"#C52032",c2:"#000000",t:"#fff",p:[["Brady Tkachuk",88,"F"],["Tim Stützle",89,"F"],["Thomas Chabot",85,"F"],["Claude Giroux",85,"F"],["David Perron",83,"F"],["Lars Eller",79,"F"],["Nick Cousins",78,"F"],["Nick Jensen",81,"F"],["Leevi Merilainen",82,"G"],["Michael Amadio",83,"F"]]},
-"Philadelphia Flyers":{c1:"#F74902",c2:"#000000",t:"#fff",p:[["Travis Konecny",86,"F"],["Owen Tippett",84,"F"],["Sean Couturier",83,"F"],["Noah Cates",82,"F"],["Philip Tomasino",82,"F"],["Samuel Ersson",83,"G"],["Matvei Michkov",86,"F"],["Trevor Zegras",89,"F"],["Bobby Brink",85,"F"],["Rasmus Ristolainen",83,"F"]]},
-"Pittsburgh Penguins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["Sidney Crosby",92,"F"],["Evgeni Malkin",86,"F"],["Kris Letang",85,"F"],["Erik Karlsson",89,"F"],["Noel Acciari",81,"F"],["Justin Brazeau",80,"F"],["Ville Koivunen",79,"F"],["Ben Kindel",81,"F"],["Arturs Silovs",83,"G"],["Rutger McGroarty",84,"F"]]},
-"San Jose Sharks":{c1:"#006D75",c2:"#EA7200",t:"#fff",p:[["Macklin Celebrini",88,"F"],["Jeff Skinner",81,"F"],["John Klingberg",83,"F"],["William Eklund",81,"F"],["Ryan Reaves",75,"F"],["Collin Graf",80,"F"],["Shakir Mukhamadullin",78,"F"],["Yaroslav Askarov",85,"G"],["Igor Chernyshov",82,"F"],["Dmitry Orlov",83,"F"]]},
-"Seattle Kraken":{c1:"#001628",c2:"#99D9D9",t:"#fff",p:[["Matty Beniers",85,"F"],["Jared McCann",84,"F"],["Vince Dunn",85,"F"],["Jordan Eberle",83,"F"],["Kaapo Kakko",85,"F"],["Berkly Catton",79,"F"],["Frederick Gaudreau",82,"F"],["Brandon Montour",86,"F"],["Ryker Evans",83,"F"],["Shane Wright",82,"F"]]},
-"St. Louis Blues":{c1:"#002F87",c2:"#FCB514",t:"#fff",p:[["Robert Thomas",88,"F"],["Jordan Kyrou",86,"F"],["Colton Parayko",85,"F"],["Jonatan Berggren",83,"F"],["Pius Suter",83,"F"],["Nick Bjugstad",80,"F"],["Mathieu Joseph",81,"F"],["Logan Mailloux",79,"F"],["Jimmy Snuggerud",78,"F"],["Cam Fowler",83,"F"]]},
-"Tampa Bay Lightning":{c1:"#002868",c2:"#FFFFFF",t:"#000",p:[["Nikita Kucherov",94,"F"],["Brayden Point",90,"F"],["Victor Hedman",88,"F"],["Andre Vasilevskiy",93,"G"],["Pontus Holmberg",80,"F"],["Darren Raddysh",80,"F"],["Conor Geekie",81,"F"],["Max Crozier",78,"F"],["Charle-Edouard D'Astous",77,"F"],["Anthony Cirelli",86,"F"]]},
-"Toronto Maple Leafs":{c1:"#00205B",c2:"#FFFFFF",t:"#000",p:[["Auston Matthews",94,"F"],["William Nylander",88,"F"],["Max Domi",84,"F"],["Matthew Knies",84,"F"],["John Tavares",91,"F"],["Bobby McMann",79,"F"],["Matias Maccelli",80,"F"],["Morgan Rielly",88,"F"],["Steven Lorentz",79,"F"],["Scott Laughton",82,"F"]]},
-"Utah Mammoth":{c1:"#7EC8E3",c2:"#000000",t:"#fff",p:[["Clayton Keller",88,"F"],["Barrett Hayton",83,"F"],["Nick Schmaltz",85,"F"],["Logan Cooley",82,"F"],["Lawson Crouse",79,"F"],["Michael Carcone",79,"F"],["Brandon Tanev",80,"F"],["Sean Durzi",81,"F"],["Karel Vejmelka",82,"G"],["J.J. Peterka",85,"F"]]},
-"Vancouver Canucks":{c1:"#00205B",c2:"#00843D",t:"#fff",p:[["Elias Pettersson",90,"F"],["Brock Boeser",87,"F"],["Filip Hronek",86,"F"],["Jake DeBrusk",83,"F"],["Jonathan Lekkerimäki",80,"F"],["Marco Rossi",82,"F"],["Teddy Blueger",78,"F"],["Derek Forbort",77,"F"],["Kevin Lankinen",82,"G"],["Kiefer Sherwood",85,"F"]]},
-"Vegas Golden Knights":{c1:"#B4975A",c2:"#333F42",t:"#000",p:[["Jack Eichel",90,"F"],["Mark Stone",88,"F"],["Tomas Hertl",87,"F"],["Ivan Barbashev",86,"F"],["Pavel Dorofeyev",85,"F"],["Brayden McNabb",84,"F"],["Keegan Kolesar",80,"F"],["Ben Hutton",78,"F"],["Akira Schmid",82,"G"],["Mitch Marner",88,"F"]]},
-"Washington Capitals":{c1:"#041E42",c2:"#C8102E",t:"#fff",p:[["Alex Ovechkin",90,"F"],["Dylan Strome",84,"F"],["John Carlson",85,"F"],["Pierre-Luc Dubois",87,"F"],["Justin Sourdif",81,"F"],["Dylan McIlrath",76,"F"],["Hendrix Lapierre",78,"F"],["Nic Dowd",82,"F"],["Charlie Lindgren",83,"G"],["Tom Wilson",86,"F"]]},
-"Winnipeg Jets":{c1:"#041E42",c2:"#AC162C",t:"#fff",p:[["Kyle Connor",88,"F"],["Mark Scheifele",87,"F"],["Connor Hellebuyck",90,"G"],["Nikita Chibrikov",82,"F"],["Gustav Nyquist",82,"F"],["Tanner Pearson",80,"F"],["Vladislav Namestnikov",82,"F"],["Neal Pionk",85,"F"],["Jonathan Toews",82,"F"],["Luke Schenn",80,"F"]]}
+"Anaheim Ducks":{c1:"#F47A38",c2:"#B09862",t:"#000",p:[["Mason McTavish",85,"F"],["Leo Carlsson",84,"F"],["Ville Husso",82,"G"],["Sam Colangelo",79,"F"],["Mikael Granlund",87,"F"],["Chris Kreider",84,"F"],["Pavel Mintyukov",82,"F"],["Alex Killorn",82,"F"],["Troy Terry",86,"F"],["Ross Johnston",76,"F"]]},
+"Boston Bruins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["David Pastrnak",94,"F"],["Charlie McAvoy",89,"F"],["Elias Lindholm",84,"F"],["Viktor Arvidsson",83,"F"],["Mason Lohrei",84,"F"],["Joonas Korpisalo",82,"G"],["Tanner Jeannot",79,"F"],["Jordan Harris",79,"D"],["Andrew Peeke",79,"F"],["Marat Khusnutdinov",80,"F"]]},
+"Buffalo Sabres":{c1:"#002654",c2:"#FDBB2F",t:"#fff",p:[["Tage Thompson",89,"F"],["Rasmus Dahlin",92,"F"],["Alex Tuch",87,"F"],["Zach Benson",82,"F"],["Peyton Krebs",81,"F"],["Jiri Kulich",80,"F"],["Josh Norris",85,"F"],["Ukko-Pekka Luukkonen",84,"G"],["Tyson Kozak",76,"F"],["Jordan Greenway",81,"F"]]},
+"Calgary Flames":{c1:"#C8102E",c2:"#F1BE48",t:"#fff",p:[["Nazem Kadri",87,"F"],["Yegor Sharangovich",83,"F"],["Mackenzie Weegar",88,"F"],["Rasmus Andersson",88,"F"],["Matvei Gridin",77,"F"],["Martin Pospisil",78,"F"],["Blake Coleman",81,"F"],["Joel Farabee",82,"F"],["Dustin Wolf",87,"G"],["Ryan Lomberg",79,"F"]]},
+"Carolina Hurricanes":{c1:"#CC0000",c2:"#000000",t:"#fff",p:[["Sebastian Aho",90,"F"],["Andrei Svechnikov",87,"F"],["Jaccob Slavin",90,"F"],["Nikolaj Ehlers",88,"F"],["Seth Jarvis",88,"F"],["Pyotr Kochetkov",85,"G"],["Jesperi Kotkaniemi",83,"F"],["Taylor Hall",84,"F"],["Alexander Nikishin",84,"F"],["K'Andre Miller",86,"F"]]},
+"Chicago Blackhawks":{c1:"#CF0A2C",c2:"#000000",t:"#fff",p:[["Connor Bedard",88,"F"],["Spencer Knight",83,"G"],["Tyler Bertuzzi",82,"F"],["Andre Burakovsky",83,"F"],["Sam Lafferty",79,"F"],["Teuvo Teravainen",84,"F"],["Ilya Mikheyev",81,"F"],["Colton Dach",78,"F"],["Frank Nazar",82,"F"],["Nick Foligno",82,"F"]]},
+"Colorado Avalanche":{c1:"#6F263D",c2:"#236192",t:"#fff",p:[["Nathan MacKinnon",96,"F"],["Cale Makar",95,"F"],["Valeri Nichushkin",85,"F"],["Gabriel Landeskog",85,"F"],["Samuel Girard",86,"F"],["Devon Toews",89,"F"],["Mackenzie Blackwood",86,"G"],["Artturi Lehkonen",85,"F"],["Brent Burns",85,"F"],["Martin Necas",90,"F"]]},
+"Columbus Blue Jackets":{c1:"#002654",c2:"#CE1126",t:"#fff",p:[["Adam Fantilli",85,"F"],["Zach Werenski",92,"F"],["Boone Jenner",83,"F"],["Charlie Coyle",84,"F"],["Isac Lundestrom",80,"F"],["Elvis Merzlikins",82,"G"],["Dante Fabbro",82,"F"],["Cole Sillinger",82,"F"],["Mason Marchment",85,"F"],["Egor Zamula",79,"F"]]},
+"Dallas Stars":{c1:"#006847",c2:"#8F8F8C",t:"#fff",p:[["Jason Robertson",89,"F"],["Roope Hintz",88,"F"],["Miro Heiskanen",91,"F"],["Matt Duchene",89,"F"],["Jake Oettinger",90,"G"],["Thomas Harley",88,"F"],["Radek Faksa",82,"F"],["Esa Lindell",87,"F"],["Mikko Rantanen",93,"F"],["Jamie Benn",85,"F"]]},
+"Detroit Red Wings":{c1:"#CE1126",c2:"#FFFFFF",t:"#000",p:[["Dylan Larkin",89,"F"],["Lucas Raymond",89,"F"],["Alex DeBrincat",88,"F"],["Patrick Kane",86,"F"],["Simon Edvinsson",83,"F"],["Cam Talbot",85,"G"],["J.T. Compher",83,"F"],["Ben Chiarot",80,"F"],["Moritz Seider",89,"F"],["James van Riemsdyk",81,"F"]]},
+"Edmonton Oilers":{c1:"#041E42",c2:"#FF4C00",t:"#fff",p:[["Connor McDavid",97,"F"],["Leon Draisaitl",96,"F"],["Evan Bouchard",88,"F"],["Ryan Nugent-Hopkins",86,"F"],["Zach Hyman",87,"F"],["Tristan Jarry",86,"G"],["Darnell Nurse",85,"D"],["Andrew Mangiapane",82,"F"],["Jake Walman",87,"F"],["Mattias Ekholm",87,"F"]]},
+"Florida Panthers":{c1:"#C8102E",c2:"#041E42",t:"#fff",p:[["Brad Marchand",89,"F"],["Sam Reinhart",93,"F"],["Anton Lundell",85,"F"],["Aaron Ekblad",87,"F"],["Gustav Forsling",89,"F"],["Sergei Bobrovsky",90,"G"],["Aleksander Barkov",95,"F"],["Seth Jones",87,"F"],["Matthew Tkachuk",93,"F"],["Carter Verhaeghe",87,"F"]]},
+"Los Angeles Kings":{c1:"#111111",c2:"#A2AAAD",t:"#fff",p:[["Anze Kopitar",88,"F"],["Drew Doughty",88,"F"],["Adrian Kempe",88,"F"],["Corey Perry",80,"F"],["Joel Armia",81,"F"],["Trevor Moore",84,"F"],["Samuel Helenius",74,"F"],["Alex Turcotte",80,"F"],["Jeff Malott",78,"F"],["Quinton Byfield",86,"F"]]},
+"Minnesota Wild":{c1:"#154734",c2:"#A6192E",t:"#fff",p:[["Quinn Hughes",95,"F"],["Kirill Kaprizov",94,"F"],["Matt Boldy",89,"F"],["Filip Gustavsson",89,"G"],["Marcus Johansson",81,"F"],["Vinnie Hinostroza",77,"F"],["Yakov Trenin",80,"F"],["Nico Sturm",80,"F"],["Ben Jones",70,"F"],["Mats Zuccarello",87,"F"]]},
+"Montreal Canadiens":{c1:"#AF1E2D",c2:"#192168",t:"#fff",p:[["Nick Suzuki",90,"F"],["Juraj Slafkovsky",85,"F"],["Cole Caufield",88,"F"],["Josh Anderson",82,"F"],["Mike Matheson",87,"F"],["Lane Hutson",88,"F"],["Noah Dobson",88,"F"],["Sam Montembeault",85,"G"],["Patrik Laine",85,"F"],["Ivan Demidov",85,"F"]]},
+"Nashville Predators":{c1:"#FFB81C",c2:"#041E42",t:"#fff",p:[["Filip Forsberg",89,"F"],["Roman Josi",92,"F"],["Juuse Saros",88,"G"],["Steven Stamkos",86,"F"],["Ryan O'Reilly",85,"F"],["Cole Smith",80,"F"],["Adam Wilsby",71,"F"],["Erik Haula",82,"F"], ["Jordan Oesterle",77,"F"],["Michael Bunting",82,"F"]]},
+"New Jersey Devils":{c1:"#CE1126",c2:"#000000",t:"#fff",p:[["Jack Hughes",93,"F"],["Nico Hischier",89,"F"],["Dougie Hamilton",88,"F"],["Timo Meier",87,"F"],["Evgenii Dadonov",82,"F"],["Jesper Bratt",91,"F"],["Arseni Gritsyuk",81,"F"],["Seamus Casey",79,"F"],["Jacob Markstrom",87,"G"],["Luke Hughes",86,"F"]]},
+"NY Islanders":{c1:"#00539B",c2:"#F47D30",t:"#fff",p:[["Mathew Barzal",86,"F"],["Bo Horvat",87,"F"],["Ilya Sorokin",91,"G"],["Anders Lee",84,"F"],["Matthew Schaefer",83,"F"],["Jean-Gabriel Pageau",83,"F"],["Simon Holmstrom",83,"F"],["Tony DeAngelo",80,"F"],["Kyle Palmieri",83,"F"],["Emil Heineman",83,"F"]]},
+"NY Rangers":{c1:"#0038A8",c2:"#CE1126",t:"#fff",p:[["Artemi Panarin",92,"F"],["Mika Zibanejad",86,"F"],["Igor Shesterkin",92,"G"],["Adam Fox",90,"F"],["Alexis Lafreniere",85,"F"],["Braden Schneider",86,"F"],["Vincent Trocheck",89,"F"],["J.T. Miller",89,"F"],["Conor Sheary",75,"F"],["Matt Rempe",77,"F"]]},
+"Ottawa Senators":{c1:"#C52032",c2:"#000000",t:"#fff",p:[["Brady Tkachuk",89,"F"],["Tim Stützle",90,"F"],["Thomas Chabot",87,"F"],["Claude Giroux",86,"F"],["David Perron",84,"F"],["Lars Eller",82,"F"],["Nick Cousins",79,"F"],["Nick Jensen",83,"F"],["Linus Ullmark",87,"G"],["Michael Amadio",83,"F"]]},
+"Philadelphia Flyers":{c1:"#F74902",c2:"#000000",t:"#fff",p:[["Travis Konecny",88,"F"],["Owen Tippett",84,"F"],["Sean Couturier",84,"F"],["Noah Cates",83,"F"],["Travis Sanheim",88,"F"],["Samuel Ersson",83,"G"],["Matvei Michkov",88,"F"],["Trevor Zegras",83,"F"],["Bobby Brink",83,"F"],["Rasmus Ristolainen",81,"F"]]},
+"Pittsburgh Penguins":{c1:"#FFB81C",c2:"#000000",t:"#fff",p:[["Sidney Crosby",94,"F"],["Evgeni Malkin",88,"F"],["Kris Letang",86,"F"],["Erik Karlsson",88,"F"],["Noel Acciari",78,"F"],["Justin Brazeau",82,"F"],["Bryan Rust",85,"F"],["Ben Kindel",81,"F"],["Arturs Silovs",83,"G"],["Rutger McGroarty",82,"F"]]},
+"San Jose Sharks":{c1:"#006D75",c2:"#EA7200",t:"#fff",p:[["Macklin Celebrini",88,"F"],["Jeff Skinner",82,"F"],["John Klingberg",78,"F"],["William Eklund",86,"F"],["Ryan Reaves",75,"F"],["Tyler Toffoli",85,"F"],["Will Smith",83,"F"],["Yaroslav Askarov",82,"G"],["Alex Wennberg",83,"F"],["Dmitry Orlov",85,"F"]]},
+"Seattle Kraken":{c1:"#001628",c2:"#99D9D9",t:"#fff",p:[["Matty Beniers",85,"F"],["Jared McCann",86,"F"],["Vince Dunn",87,"F"],["Jordan Eberle",85,"F"],["Kaapo Kakko",83,"F"],["Berkly Catton",79,"F"],["Frederick Gaudreau",83,"F"],["Brandon Montour",87,"F"],["Ryker Evans",84,"F"],["Shane Wright",82,"F"]]},
+"St. Louis Blues":{c1:"#002F87",c2:"#FCB514",t:"#fff",p:[["Robert Thomas",89,"F"],["Jordan Kyrou",88,"F"],["Colton Parayko",88,"F"],["Jonatan Berggren",80,"F"],["Pius Suter",83,"F"],["Jordan Binnington",86,"F"],["Mathieu Joseph",81,"F"],["Logan Mailloux",79,"F"],["Jimmy Snuggerud",80,"F"],["Cam Fowler",84,"F"]]},
+"Tampa Bay Lightning":{c1:"#002868",c2:"#FFFFFF",t:"#000",p:[["Nikita Kucherov",96,"F"],["Brayden Point",92,"F"],["Victor Hedman",92,"F"],["Andre Vasilevskiy",93,"G"],["Pontus Holmberg",79,"F"],["Darren Raddysh",84,"F"],["Jake Guentzel",89,"F"],["Mitchell Chaffee",79,"F"],["Yanni Gourde",82,"F"],["Anthony Cirelli",86,"F"]]},
+"Toronto Maple Leafs":{c1:"#00205B",c2:"#FFFFFF",t:"#000",p:[["Auston Matthews",94,"F"],["William Nylander",92,"F"],["Max Domi",82,"F"],["Matthew Knies",87,"F"],["John Tavares",88,"F"],["Bobby McMann",81,"F"],["Matias Maccelli",83,"F"],["Morgan Rielly",87,"F"],["Steven Lorentz",79,"F"],["Scott Laughton",83,"F"]]},
+"Utah Mammoth":{c1:"#7EC8E3",c2:"#000000",t:"#fff",p:[["Clayton Keller",90,"F"],["Barrett Hayton",83,"F"],["Nick Schmaltz",86,"F"],["Logan Cooley",88,"F"],["Lawson Crouse",82,"F"],["Michael Carcone",80,"F"],["Brandon Tanev",83,"F"],["Sean Durzi",85,"F"],["Karel Vejmelka",85,"G"],["J.J. Peterka",86,"F"]]},
+"Vancouver Canucks":{c1:"#00205B",c2:"#00843D",t:"#fff",p:[["Elias Pettersson",87,"F"],["Brock Boeser",86,"F"],["Filip Hronek",86,"F"],["Jake DeBrusk",85,"F"],["Jonathan Lekkerimäki",83,"F"],["Marco Rossi",87,"F"],["Teddy Blueger",81,"F"],["Derek Forbort",80,"F"],["Kevin Lankinen",84,"G"],["Kiefer Sherwood",83,"F"]]},
+"Vegas Golden Knights":{c1:"#B4975A",c2:"#333F42",t:"#000",p:[["Jack Eichel",94,"F"],["Mark Stone",89,"F"],["Tomas Hertl",87,"F"],["Ivan Barbashev",86,"F"],["Pavel Dorofeyev",86,"F"],["Brayden McNabb",85,"F"],["Keegan Kolesar",80,"F"],["Shea Theodore",88,"F"],["Adin Hill",84,"G"],["Mitch Marner",92,"F"]]},
+"Washington Capitals":{c1:"#041E42",c2:"#C8102E",t:"#fff",p:[["Alex Ovechkin",90,"F"],["Dylan Strome",89,"F"],["John Carlson",88,"F"],["Pierre-Luc Dubois",86,"F"],["Justin Sourdif",78,"F"],["Dylan McIlrath",75,"F"],["Aliaksei Protas",87,"F"],["Nic Dowd",81,"F"],["Charlie Lindgren",83,"G"],["Tom Wilson",86,"F"]]},
+"Winnipeg Jets":{c1:"#041E42",c2:"#AC162C",t:"#fff",p:[["Kyle Connor",92,"F"],["Mark Scheifele",87,"F"],["Connor Hellebuyck",94,"G"],["Adam Lowry",84,"F"],["Gustav Nyquist",83,"F"],["Tanner Pearson",81,"F"],["Vladislav Namestnikov",83,"F"],["Neal Pionk",87,"F"],["Jonathan Toews",82,"F"],["Luke Schenn",84,"F"]]}
 };
 
 /* ================= AHL TEAMS ================= */
@@ -467,6 +467,24 @@ let freeAgents = [
   {name:"Travis Dermott",ovr:76}
 ];
 
+// ===== Name Generator =====
+const firstNames = [
+"Aaron","Adam","Adrian","Aiden","Alan","Albert","Alex","Alexander","Andrew","Anthony","Arthur","Austin","Benjamin","Blake","Brandon","Brian","Bruce","Caleb","Cameron","Carl","Charles","Chase","Christian","Christopher","Cody","Colin","Connor","Daniel","David","Dean","Dylan","Edward","Eli","Elijah","Ethan","Evan","Felix","Finn","Gabriel","Gavin","George","Grant","Gregory","Henry","Hudson","Hunter","Ian","Isaac","Isaiah","Jack","Jackson","Jacob","James","Jason","Jayden","Jeremiah","John","Jonathan","Joseph","Joshua","Julian","Justin","Kevin","Kyle","Landon","Lawrence","Leo","Liam","Logan","Lucas","Luke","Marcus","Matthew","Michael","Nathan","Nicholas","Noah","Oliver","Owen","Patrick","Paul","Peter","Philip","Quentin","Raymond","Richard","Robert","Ryan","Samuel","Scott","Sean","Sebastian","Stephen","Thomas","Timothy","Tyler","Victor","Vincent","William","Zachary","Abel","Abram","Ace","Adriel","Alaric","Alden","Ambrose","Amos","Anders","Ansel","Aric","Arlo","Asa","Ashby","Atlas","Atticus","Audric","Baylor","Beckett","Blaise","Bodhi","Bowen","Bram","Caius","Callum","Caspian","Cassius","Cedric","Cian","Cullen","Dashiell","Declan","Desmond","Dexter","Dominic","Donavan","Dorian","Eamon","Edison","Elias","Emrys","Evander","Fabian","Finnian","Florian","Gideon","Grayson","Hamish","Hugo","Ignatius","Iker","Isidore","Jasper","Jaxon","Joaquin","Kairo","Keaton","Kendrick","Lachlan","Leander","Lennox","Lucian","Malachi","Marcel","Matthias","Maximilian","Merrick","Micah","Mordecai","Nash","Nehemiah","Nikolai","Orion","Otis","Percival","Phineas","Quade","Quincy","Rafael","Remington","Ronan","Roscoe","Salem","Samson","Soren","Sterling","Thaddeus","Tobias","Torin","Ulric","Valor","Vaughn","Walter","Wesley","Xander","Xavier","Yael","Zephyr","Zane","Zion"
+];
+
+const lastNames = [
+"Smith","Johnson","Williams","Brown","Jones","Garcia","Miller","Davis","Rodriguez","Martinez","Hernandez","Lopez","Gonzalez","Wilson","Anderson","Thomas","Taylor","Moore","Jackson","Martin","Lee","Perez","Thompson","White","Harris","Sanchez","Clark","Ramirez","Lewis","Robinson","Walker","Young","Allen","King","Wright","Scott","Torres","Nguyen","Hill","Flores","Green","Adams","Nelson","Baker","Hall","Rivera","Campbell","Mitchell","Carter","Roberts","Gomez","Phillips","Evans","Turner","Diaz","Parker","Cruz","Edwards","Collins","Reyes","Stewart","Morris","Morales","Murphy","Cook","Rogers","Gutierrez","Ortiz","Morgan","Cooper","Peterson","Bailey","Reed","Kelly","Howard","Ramos","Kim","Cox","Ward","Richardson","Watson","Brooks","Chavez","Wood","James","Bennett","Gray","Mendoza","Ruiz","Hughes","Price","Alvarez","Castillo","Sanders","Patel","Myers","Long","Ross","Foster","Jimenez","Abbott","Aldridge","Ashford","Bancroft","Barton","Beaumont","Belmont","Benson","Blackwood","Blythe","Bradshaw","Briggs","Brock","Buckley","Byrne","Callahan","Carmichael","Chambers","Clayton","Cleveland","Connelly","Corbett","Crawford","Dalton","Davenport","Drake","Eaton","Ellsworth","Fairchild","Falkner","Fenton","Fitzgerald","Fleming","Forsyth","Galloway","Gibson","Grantham","Hale","Harrington","Hawthorne","Hendrix","Hollingsworth","Hollis","Holt","Ingram","Jamison","Kendrick","Kingsley","Langford","Lansbury","Lawson","Leighton","Lockwood","Lombard","Loring","Maddox","Montgomery","Morrison","Nash","Oakley","Pendleton","Prescott","Radcliffe","Rafferty","Randall","Redmond","Remington","Ridgeway","Rosenthal","Rowland","Salisbury","Sinclair","Slater","Sterling","Stratford","Summers","Thorne","Thornton","Vance","Vaughn","Wakefield","Wainwright","Westbrook","Whitaker","Winters","Wolfe","Worthington","Yardley","Youngblood","Zephyr","Ziegler","Abbott","Andersen","Bakker","Barros","Bianchi","Bjornsson","Blomqvist","Braun","Brunetti","Carlsen","Carvalho","Dahl","Dubois","Dumont","Engel","Fischer","Fontana","Fransson","Garcia","Gomez","Hansen","Harrison","Ivanov","Jensen","Johansson","Kowalski","Larsen","Leclerc","Lindberg","Lopez","Luca","Lund","Madsen","Marin","Martinez","Meyer","Miklos","Moreau","Nielsen","Novak","Olsen","Orlova","Papadopoulos","Pavlov","Petrov","Popov","Rossi","Roth","Santos","Santini","Schneider","Schultz","Silva","Silvestri","Smirnov","Sorensen","Stoltz","Svensson","Tomaszewski","Torres","Valente","Varga","Vasquez","Vega","Vidal","Volkov","Weber","Wojcik","Wright","Zagor","Zimmermann","Zivkovic","Bengtsson","Corti","Delgado","Dimitrov","Ekström","Ferreira","Giordano","Håkansson","Ibrahim","Keller","Kovács","Lombardi","Müller","Nikolov","Otero","Pereira","Petrescu","Rinaldi","Santoro","Schroeder","Sokolov","Tavares","Van den Berg","Vasilev","Wagner","Zaragoza","Aho","Armstrong","Benn","Bennett","Boqvist","Burakovsky","Caggiula","Cernak","Chiasson","Coleman",
+"Danault","DeAngelo","Donskoi","Dowd","Dunn","Eriksson","Fabbri","Fast","Formenton","Frost","Goodrow","Greenway","Hagelin","Hayton","Helm","Hinostroza","Hofer","Hyman","Jarnkrok","Johansson","Kahun","Kassian","Killorn","Kiviranta","Kotkaniemi","Krebs","Kunin","Kyrou","Lafferty","Lauko","Liljegren","MacDermid","McDonagh","Motte","Murphy","Newhook","Nyquist","Olofsson","Pearson","Pitlick","Puljujarvi","Raddysh","Ristolainen","Roy","Sanheim","Scandella","Sissons","Smith","Sprong","Stephenson","Stolarz","Texier","Thompson","Tippett","Trenin","Veleno","Walman","Wennberg","White","Wood","Zadina","Acciari","Addison","Bastian","Beauvillier","Bernard-Docker","Bjugstad","Blidh","Bonino","Carrier","Clifton","Delia","Dermott","Desharnais","Dzingel","Ferraro","Foegele","Gilbert","Guhle","Hakanpaa","Holl"
+];
+
+function generatePlayerName() {
+  return (
+    firstNames[Math.floor(Math.random() * firstNames.length)] +
+    " " +
+    lastNames[Math.floor(Math.random() * lastNames.length)]
+  );
+}
+
 /* ================= ARENAS ================= */
 const arenas = {
 "Anaheim Ducks":"Honda Center","Boston Bruins":"TD Garden","Buffalo Sabres":"KeyBank Center",
@@ -483,13 +501,13 @@ const arenas = {
 };
 
 /* ================= RELOCATION DATA ================= */
-const relocationCities = ["Atlanta","Houston","Quebec","San Francisco"];
-const relocationNames = ["Thrashers","Aeros","Nordiques","Seals"];
+const relocationCities = ["Arizona","Atlanta","Houston","Quebec"];
+const relocationNames = ["Coyotes","Thrashers","Aeros","Nordiques"];
 const relocationColors = {
+  "Arizona": {c1:"#8C2633", c2:"#E2D6B5", t:"#154734", arena:"Desert Diamond Arena"},
   "Atlanta": {c1:"#88DDEE", c2:"#003366", t:"#fff", arena:"State Farm Arena"},
   "Houston": {c1:"#002244", c2:"#AA0000", t:"#fff", arena:"Toyota Center"},
   "Quebec": {c1:"#00AEEF", c2:"#ED1B2E", t:"#fff", arena:"Videotron Centre"},
-  "San Francisco": {c1:"#8B5A2B", c2:"#FFFFFF", t:"#FFD700", arena:"Chase Center"}
 };
 
 /* ================= COACHES ================= */
@@ -539,7 +557,7 @@ Object.keys(realCoaches).forEach(team => { teamCoaches[team] = {...realCoaches[t
 let currentYear = 2025;
 
 const draftPickValues = {
-  1: 90,
+  1: 92,
   2: 80,
   3: 72,
   4: 65,
@@ -862,30 +880,157 @@ function viewDraftPicks() {
   document.getElementById("output").innerHTML = html;
 }
 
-/* ================= COACH FUNCTIONS ================= */
-function viewCoach(){
+/* ================= ALUMNI PLAYERS ================= */
+const alumniPlayers = [
+  { name: "Joe Pavelski", charisma: 85, dialogue: "I've always loved helping teams grow. Maybe I could coach you!" },
+  { name: "Sean Avery", charisma: 75, dialogue: "Coaching? Hmm, I might be interested... if things get spicy." },
+  { name: "Zdeno Chara", charisma: 90, dialogue: "I could guide the players with my experience. Let's see if it fits." },
+  { name: "Patrice Bergeron", charisma: 88, dialogue: "I've always valued leadership. I might join your team." },
+  { name: "Ryan Getzlaf", charisma: 86, dialogue: "I've led teams my whole career. Coaching could be the next step." },
+  { name: "Duncan Keith", charisma: 82, dialogue: "I see the game well from the blue line. Coaching interests me." },
+  { name: "Patrick Marleau", charisma: 80, dialogue: "I've been around forever. I could pass that knowledge on." },
+  { name: "Henrik Lundqvist", charisma: 87, dialogue: "I bring calm and structure. A bench could use that." },
+  { name: "Henrik Zetterberg", charisma: 84, dialogue: "Leadership and detail matter. I could coach that." },
+  { name: "Daniel Sedin", charisma: 83, dialogue: "I believe in smart, skilled hockey. Coaching fits that." },
+  { name: "Nicklas Lidström", charisma: 92, dialogue: "Defense, positioning, composure. I can teach all of it." },
+  { name: "Mark Messier", charisma: 95, dialogue: "Leadership wins championships. I'd coach the right way." },
+  { name: "Teemu Selänne", charisma: 85, dialogue: "Hockey should be fun and fast. I'd bring that mindset." },
+  { name: "P.K. Subban", charisma: 78, dialogue: "Energy, confidence, personality — I’d bring all of it." },
+  { name: "Roberto Luongo", charisma: 80, dialogue: "I’ve seen every situation possible. I could help guide a team." }
+];
+
+let firedCurrentCoach = false; // Tracks if you’ve fired your coach
+
+/* ================= VIEW COACH ================= */
+function viewCoach() {
   const c = teamCoaches[currentTeam];
   document.getElementById("output").innerHTML = `<b>Head Coach:</b> ${c ? c.name + ' ('+c.ovr+')' : "Vacant"}`;
 }
 
-function fireCoach(){
+/* ================= FIRE COACH ================= */
+function fireCoach() {
+  if (!teamCoaches[currentTeam]) {
+    document.getElementById("output").innerHTML = "<b>No coach to fire!</b>";
+    return;
+  }
+
   teamCoaches[currentTeam] = null;
-  document.getElementById("output").innerHTML="<b>Coach Fired!</b>";
+  firedCurrentCoach = true; // enable alumni recruiting
+  document.getElementById("output").innerHTML = "<b>Coach Fired!</b> You can now talk to alumni to try to hire them.";
+  showAlumniButton();
 }
 
-function showCoachPool(){
-  if(!teamCoaches[currentTeam]){
-    document.getElementById("output").innerHTML="<b>Available Coaches:</b><br>"+
+/* ================= SHOW COACH POOL ================= */
+function showCoachPool() {
+  if (!teamCoaches[currentTeam]) {
+    document.getElementById("output").innerHTML = "<b>Available Coaches:</b><br>" +
       coachPool.map((c,i)=>`${c.name} (${c.ovr}) <button onclick='hireCoach(${i})'>Hire</button>`).join("<br>");
   } else {
-    document.getElementById("output").innerHTML="<b>You must fire your current coach first!</b>";
+    document.getElementById("output").innerHTML = "<b>You must fire your current coach first!</b>";
   }
 }
 
-function hireCoach(i){
+/* ================= HIRE COACH ================= */
+function hireCoach(i) {
   teamCoaches[currentTeam] = {...coachPool[i]};
   coachPool.splice(i,1);
-  document.getElementById("output").innerHTML=`<b>Hired Coach:</b> ${teamCoaches[currentTeam].name} (${teamCoaches[currentTeam].ovr})`;
+  firedCurrentCoach = false; // reset alumni access
+  document.getElementById("output").innerHTML = `<b>Hired Coach:</b> ${teamCoaches[currentTeam].name} (${teamCoaches[currentTeam].ovr})`;
+  removeAlumniButton();
+}
+
+/* ================= SHOW ALUMNI BUTTON ================= */
+function showAlumniButton() {
+  if (!document.getElementById("talkAlumniBtn")) {
+    const btn = document.createElement("button");
+    btn.id = "talkAlumniBtn";
+    btn.innerText = "Talk to Alumni Players";
+    btn.onclick = listAlumni;
+    document.getElementById("franchise").appendChild(btn);
+  }
+}
+
+/* ================= REMOVE ALUMNI BUTTON ================= */
+function removeAlumniButton() {
+  const btn = document.getElementById("talkAlumniBtn");
+  if (btn) btn.remove();
+  document.getElementById("alumniList")?.remove();
+}
+
+/* ================= LIST ALUMNI ================= */
+function listAlumni() {
+  if (!firedCurrentCoach) return alert("You must fire your current coach first!");
+
+  // Remove old list if exists
+  document.getElementById("alumniList")?.remove();
+
+  const container = document.createElement("div");
+  container.id = "alumniList";
+  container.innerHTML = "<b>Alumni Players:</b><br>";
+
+  alumniPlayers.forEach((player, index) => {
+    const btn = document.createElement("button");
+    btn.innerText = player.name;
+    btn.style.display = "block";
+    btn.style.margin = "5px 0";
+    btn.onclick = () => attemptRecruit(player);
+    container.appendChild(btn);
+  });
+
+  document.getElementById("franchise").appendChild(container);
+}
+
+/* ================= ATTEMPT RECRUITMENT ================= */
+function attemptRecruit(player) {
+  const output = document.getElementById("output");
+  output.innerHTML = `<b>Talking to ${player.name}...</b><br>"${player.dialogue}"`;
+
+  // Decide if they accept or decline (higher charisma = more likely to accept)
+  const chance = Math.random() * 100;
+  const successRate = 40 + (player.charisma - 70); // base 40% + charisma bonus
+
+  setTimeout(() => {
+    if (chance <= successRate) {
+      teamCoaches[currentTeam] = { name: player.name, ovr: player.charisma };
+      firedCurrentCoach = false;
+      output.innerHTML += `<br><b>Success!</b> ${player.name} has agreed to be your head coach.`;
+      removeAlumniButton();
+    } else {
+      output.innerHTML += `<br><b>${player.name} politely declines.</b> You can try talking to someone else.`;
+    }
+  }, 1000); // short delay for dialogue effect
+}
+
+/* ================= NEW FREE AGENTS ================= */
+function addNewFreeAgents() {
+  for (let i = 0; i < 1; i++) {
+    freeAgents.push({
+      name: generatePlayerName(),
+      ovr: Math.floor(Math.random() * 20) + 65 // 70–85
+    });
+  }
+}
+
+/* ================= NEW FREE AGENTS ================= */
+function cpuSignFreeAgents() {
+  // 30–60% of free agents get signed each season
+  const signRate = Math.random() * 0.3 + 0.3;
+
+  const signCount = Math.floor(freeAgents.length * signRate);
+  const shuffled = [...freeAgents].sort(() => Math.random() - 0.5);
+
+  for (let i = 0; i < signCount; i++) {
+    const player = shuffled[i];
+
+    // pick random CPU team (not user team)
+    const cpuTeams = Object.keys(teams).filter(t => t !== currentTeam);
+    const team = cpuTeams[Math.floor(Math.random() * cpuTeams.length)];
+
+    teams[team].push(player);
+
+    // remove from free agents
+    freeAgents.splice(freeAgents.indexOf(player), 1);
+  }
 }
 
 /* ================= SEASON SIMULATION ================= */
@@ -1021,6 +1166,9 @@ if (!madePlayoffs) {
   updateSeason();
 
   seasonsSimmed++;
+
+  addNewFreeAgents();
+
 }
 
 currentYear++;
